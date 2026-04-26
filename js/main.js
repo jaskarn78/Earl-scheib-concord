@@ -27,7 +27,7 @@
       var fields = form.querySelectorAll("[required]");
       var ok = true;
       fields.forEach(function (f) {
-        if (!f.value.trim()) { ok = false; f.style.borderColor = "#dc2626"; }
+        if (!f.value.trim()) { ok = false; f.style.borderColor = "#3B64A6"; }
       });
       if (!ok) {
         status.textContent = "Please fill every required field.";

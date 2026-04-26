@@ -9,6 +9,31 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Brand palette mirrors earlscheibconcord.com — `red-*` utilities render brand blue.
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { blue: '"'"'#3B64A6'"'"', dark: '"'"'#0a0a0a'"'"', slate: '"'"'#18181b'"'"' },
+          red: {
+            50:  '"'"'#F2F6FC'"'"',
+            100: '"'"'#E1EAF7'"'"',
+            200: '"'"'#B9CAE6'"'"',
+            300: '"'"'#93AAD5'"'"',
+            400: '"'"'#7395CD'"'"',
+            500: '"'"'#5179B7'"'"',
+            600: '"'"'#3B64A6'"'"',
+            700: '"'"'#2F5085'"'"',
+            800: '"'"'#274370'"'"',
+            900: '"'"'#1A2D4D'"'"'
+          }
+        },
+        fontFamily: { sans: ['"'"'Inter'"'"', '"'"'system-ui'"'"', '"'"'sans-serif'"'"'] }
+      }
+    }
+  }
+</script>
 <link rel="stylesheet" href="css/styles.css">
 <script type="application/ld+json">
 {

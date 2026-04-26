@@ -1,8 +1,9 @@
 /* Earl Scheib Of Concord — custom styles on top of Tailwind */
 
 :root {
-  --es-red: #dc2626;
-  --es-red-dark: #991b1b;
+  /* Brand blue mirrors earlscheibconcord.com (Wix --color_2 / --color_19). */
+  --es-red: #3B64A6;
+  --es-red-dark: #274370;
   --es-ink: #0a0a0a;
   --es-slate: #18181b;
   --es-slate-2: #27272a;
