@@ -1,123 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Before &amp; After Gallery | Earl Scheib Of Concord</title>
-<meta name="description" content="Before-and-after photos from our auto paint and collision repair work in Concord, CA. Real cars, real customers, real results.">
-<link rel="canonical" href="https://jaskarn78.github.io/Earl-scheib-concord/gallery.html">
-<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gallery — Before &amp; After | Earl Scheib of Concord</title>
+<meta name="description" content="Real before-and-after photos from the Earl Scheib of Concord paint and body shop. Updates regularly with recent customer projects." />
+<meta name="theme-color" content="#c8102e" />
+<link rel="canonical" href="https://www.earlscheibconcord.com/gallery.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Gallery — Before &amp; After | Earl Scheib of Concord" />
+<meta property="og:description" content="Real before-and-after photos from recent customer projects." />
+<meta property="og:url" content="https://www.earlscheibconcord.com/gallery.html" />
+<meta property="og:image" content="https://www.earlscheibconcord.com/assets/img/og-default.jpg" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="css/styles.css">
+<script>tailwind.config={theme:{extend:{colors:{'es-red':'#c8102e','es-red-dark':'#9a0c23','es-ink':'#0b0b0d','es-steel':'#1a1d24','es-mist':'#f4f5f7'}}}};</script>
+<link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
-<body class="bg-stone-50 text-zinc-900">
+<body class="bg-white text-gray-900">
 
-<header class="sticky top-0 z-40 bg-zinc-900/95 backdrop-blur text-white">
-  <div class="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16">
-    <a href="index.html" class="flex items-center gap-2 font-extrabold tracking-tight">
-      <span class="inline-block w-7 h-7 rounded bg-red-600"></span>
-      <span class="text-base sm:text-lg">EARL SCHEIB <span class="text-red-500">/</span> CONCORD</span>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="bg-es-ink text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3" aria-label="Earl Scheib of Concord home">
+      <span class="inline-block w-9 h-9 rounded bg-es-red flex items-center justify-center text-white font-extrabold text-lg" aria-hidden="true">ES</span>
+      <span class="font-extrabold tracking-tight text-lg sm:text-xl">Earl Scheib<span class="text-es-red"> of Concord</span></span>
     </a>
-    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
-      <a class="nav-link hover:text-red-400" href="index.html">Home</a>
-      <a class="nav-link hover:text-red-400" href="services.html">Services</a>
-      <a class="nav-link hover:text-red-400" href="gallery.html">Gallery</a>
-      <a class="nav-link hover:text-red-400" href="about.html">About</a>
-      <a class="nav-link hover:text-red-400" href="faq.html">FAQ</a>
-      <a class="nav-link hover:text-red-400" href="testimonials.html">Reviews</a>
-      <a class="nav-link hover:text-red-400" href="car-care.html">Car Care</a>
-      <a class="nav-link hover:text-red-400" href="contact.html">Contact</a>
-    </nav>
-    <a href="tel:+19256097780" class="hidden md:inline-block px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 font-bold text-sm">(925) 609-7780</a>
-    <button data-menu-toggle aria-expanded="false" aria-label="Toggle menu" class="md:hidden p-2">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    <button data-nav-toggle aria-controls="primary-nav" aria-expanded="false" class="md:hidden text-white p-2 rounded hover:bg-white/10" aria-label="Toggle navigation">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-  </div>
-  <div data-mobile-menu class="mobile-menu md:hidden border-t border-zinc-800">
-    <div class="px-4 py-3 flex flex-col gap-1 text-sm">
-      <a class="py-2" href="index.html">Home</a><a class="py-2" href="services.html">Services</a>
-      <a class="py-2" href="gallery.html">Gallery</a><a class="py-2" href="about.html">About</a>
-      <a class="py-2" href="faq.html">FAQ</a><a class="py-2" href="testimonials.html">Reviews</a>
-      <a class="py-2" href="car-care.html">Car Care</a><a class="py-2" href="contact.html">Contact</a>
-    </div>
+    <nav id="primary-nav" data-nav-menu class="hidden md:flex absolute md:static top-16 left-0 right-0 bg-es-ink md:bg-transparent z-40 flex-col md:flex-row items-stretch md:items-center gap-0 md:gap-6 p-4 md:p-0 border-t md:border-0 border-white/10">
+      <a data-nav-link href="/" class="py-2 md:py-0 hover:text-es-red transition-colors font-medium">Home</a>
+      <a data-nav-link href="/services.html" class="py-2 md:py-0 hover:text-es-red transition-colors font-medium">Services</a>
+      <a data-nav-link href="/gallery.html" class="py-2 md:py-0 hover:text-es-red transition-colors font-medium">Gallery</a>
+      <a data-nav-link href="/about.html" class="py-2 md:py-0 hover:text-es-red transition-colors font-medium">About</a>
+      <a data-nav-link href="/faq.html" class="py-2 md:py-0 hover:text-es-red transition-colors font-medium">FAQ</a>
+      <a data-nav-link href="/car-care.html" class="py-2 md:py-0 hover:text-es-red transition-colors font-medium">Car Care</a>
+      <a data-nav-link href="/contact.html" class="py-2 md:py-0 hover:text-es-red transition-colors font-medium">Contact</a>
+      <a href="tel:+19256097780" class="btn-red font-semibold px-4 py-2 rounded-md hidden md:inline-block">(925) 609-7780</a>
+    </nav>
   </div>
 </header>
 
-<section class="hero-grit text-white">
-  <div class="max-w-7xl mx-auto px-4 lg:px-8 py-16 md:py-20">
-    <p class="text-red-400 font-bold tracking-widest uppercase text-xs mb-3">Gallery</p>
-    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Before &amp; after.</h1>
-    <p class="mt-4 max-w-2xl text-zinc-300">Real customer cars, real shop work. Tap any photo for the full-size before/after.</p>
+<main id="main">
+
+<section class="bg-es-ink text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <p class="text-sm uppercase tracking-widest font-semibold text-es-red mb-3">Our work</p>
+    <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Before &amp; after.</h1>
+    <p class="mt-5 text-lg text-gray-300 max-w-2xl leading-relaxed">A handful of recent customer projects from the bay. Mix of insurance collision work, full repaints, and restoration jobs.</p>
   </div>
 </section>
 
-<section class="py-16">
-  <div class="max-w-7xl mx-auto px-4 lg:px-8">
-    <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl p-5 mb-10 text-sm">
-      <strong>Photo upload pending.</strong> Below are placeholders showing the gallery layout. Real before/after photos
-      from the shop will replace each tile — see the project README for upload instructions.
+<section class="py-16 sm:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-r-lg mb-10">
+      <p class="text-sm text-yellow-900"><strong>Photos coming soon.</strong> The placeholders below show how this gallery is laid out. Real before-and-afters will replace them once the shop supplies photo files. See <code class="bg-yellow-100 px-1.5 py-0.5 rounded text-xs">README.md</code> for upload instructions.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — Honda Civic full repaint">[Before/after — Honda Civic full repaint]</div><figcaption class="text-sm text-zinc-600 mt-2">Honda Civic · full repaint · Diamond package</figcaption></figure>
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — Toyota Tacoma rear panel collision repair">[Before/after — Toyota Tacoma rear panel collision repair]</div><figcaption class="text-sm text-zinc-600 mt-2">Toyota Tacoma · rear panel collision repair</figcaption></figure>
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — 1972 Cadillac restoration repaint">[Before/after — 1972 Cadillac restoration repaint]</div><figcaption class="text-sm text-zinc-600 mt-2">1972 Cadillac · restoration repaint</figcaption></figure>
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — Ford F-150 oxidation removal and Platinum repaint">[Before/after — Ford F-150 oxidation removal and Platinum repaint]</div><figcaption class="text-sm text-zinc-600 mt-2">Ford F-150 · oxidation removal + Platinum</figcaption></figure>
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — Subaru Outback fender bender insurance repair">[Before/after — Subaru Outback fender bender insurance repair]</div><figcaption class="text-sm text-zinc-600 mt-2">Subaru Outback · insurance collision job</figcaption></figure>
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — Mazda Miata color change two-tone">[Before/after — Mazda Miata color change two-tone]</div><figcaption class="text-sm text-zinc-600 mt-2">Mazda Miata · color change · two-tone add-on</figcaption></figure>
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — Chevy Silverado clear coat delamination repair">[Before/after — Chevy Silverado clear coat delamination repair]</div><figcaption class="text-sm text-zinc-600 mt-2">Chevy Silverado · clear coat delamination repair</figcaption></figure>
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — Nissan Altima door panel replacement and respray">[Before/after — Nissan Altima door panel replacement and respray]</div><figcaption class="text-sm text-zinc-600 mt-2">Nissan Altima · door replacement &amp; respray</figcaption></figure>
-      <figure><div class="gallery-ph rounded-lg" role="img" aria-label="Before and after — Jeep Wrangler full color change with Diamond package">[Before/after — Jeep Wrangler full color change with Diamond package]</div><figcaption class="text-sm text-zinc-600 mt-2">Jeep Wrangler · full color change · Diamond</figcaption></figure>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of a 1970s American sedan repaint, full Diamond service.">
+          <span class="gallery-tag">Diamond · Full repaint · '70s sedan</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of front bumper and fender collision repair.">
+          <span class="gallery-tag">Collision · Front-end repair</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of a daily-driver pickup truck Platinum repaint.">
+          <span class="gallery-tag">Platinum · Pickup truck</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of clear coat delamination repair on a hood.">
+          <span class="gallery-tag">Extra prep · Hood delamination</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of a two-tone custom paint job.">
+          <span class="gallery-tag">Two-tone · Custom paint</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of a fender bender insurance repair.">
+          <span class="gallery-tag">Insurance · Fender bender</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of a classic muscle car full restoration repaint.">
+          <span class="gallery-tag">Diamond · Muscle car restoration</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of an SUV door panel repaint after parking lot damage.">
+          <span class="gallery-tag">Spot repair · SUV door</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="gallery-card" role="img" aria-label="Placeholder for before-and-after photo of oxidation correction on a sun-faded sedan.">
+          <span class="gallery-tag">Extra prep · Oxidation correction</span>
+        </div>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="bg-zinc-900 text-white py-14">
-  <div class="max-w-5xl mx-auto px-4 lg:px-8 text-center">
-    <h2 class="text-3xl font-extrabold">See your car here next.</h2>
-    <p class="mt-3 text-zinc-300">We post fresh work to Instagram all the time.</p>
-    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-3">
-      <a href="https://www.instagram.com/earlscheibofconcord" class="bg-red-600 hover:bg-red-700 font-bold px-6 py-3 rounded-md">Follow @earlscheibofconcord</a>
-      <a href="contact.html" class="border-2 border-zinc-600 hover:border-red-500 font-bold px-6 py-3 rounded-md">Get a free estimate</a>
+<section class="py-16 bg-es-mist text-center">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-extrabold leading-tight mb-4">Want to see your car here next?</h2>
+    <p class="text-gray-700 mb-7">Bring it by for a free in-person estimate &mdash; we'll show you what's possible for your specific car.</p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="tel:+19256097780" class="btn-red px-6 py-3.5 rounded-md font-semibold">Call (925) 609-7780</a>
+      <a href="/contact.html" class="border-2 border-es-ink text-es-ink hover:bg-es-ink hover:text-white px-6 py-3.5 rounded-md font-semibold transition-colors">Get directions</a>
     </div>
   </div>
 </section>
 
-<footer class="bg-zinc-950 text-zinc-300 py-14 border-t border-zinc-800">
-  <div class="max-w-7xl mx-auto px-4 lg:px-8 grid md:grid-cols-4 gap-10">
+</main>
+
+<footer class="bg-black text-gray-400 py-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-10">
     <div class="md:col-span-2">
-      <p class="font-extrabold text-white text-lg">EARL SCHEIB <span class="text-red-500">/</span> CONCORD</p>
-      <p class="mt-3 text-sm text-zinc-400 max-w-sm">Affordable auto paint and collision repair in Concord, CA. Family-owned since 2010.</p>
-      <a href="https://www.instagram.com/earlscheibofconcord" class="inline-block mt-4 text-sm text-red-400 hover:underline">@earlscheibofconcord →</a>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-block w-9 h-9 rounded bg-es-red flex items-center justify-center text-white font-extrabold text-lg" aria-hidden="true">ES</span>
+        <span class="font-extrabold tracking-tight text-lg text-white">Earl Scheib<span class="text-es-red"> of Concord</span></span>
+      </div>
+      <p class="leading-relaxed max-w-md">Affordable auto paint and collision repair in Concord, CA. Locally owned since 2010 — three paint tiers, real prep, and warranties up to six years.</p>
     </div>
     <div>
-      <p class="font-bold text-white">Visit</p>
-      <address class="mt-3 not-italic text-sm leading-relaxed">2130 Market St<br>Concord, CA 94520<br><a href="https://maps.google.com/?q=2130+Market+St+Concord+CA+94520" class="text-red-400 hover:underline">Get directions →</a></address>
-      <p class="font-bold text-white mt-5">Hours</p>
-      <p class="text-sm mt-2">Mon–Fri 8:00am–4:30pm<br>Sat &amp; Sun closed</p>
+      <h4 class="font-bold text-white mb-3">Visit</h4>
+      <address class="not-italic leading-relaxed">
+        2130 Market St<br />Concord, CA 94520<br />
+        <a href="tel:+19256097780" class="text-white hover:text-es-red">(925) 609-7780</a><br />
+        <a href="mailto:info@earlscheibconcord.com" class="text-white hover:text-es-red break-all">info@earlscheibconcord.com</a>
+      </address>
     </div>
     <div>
-      <p class="font-bold text-white">Contact</p>
-      <p class="text-sm mt-3"><a href="tel:+19256097780" class="hover:text-red-400">(925) 609-7780</a></p>
-      <p class="text-sm mt-1"><a href="mailto:info@earlscheibconcord.com" class="hover:text-red-400">info@earlscheibconcord.com</a></p>
-      <p class="font-bold text-white mt-5">Site</p>
-      <ul class="text-sm mt-2 space-y-1">
-        <li><a href="services.html" class="hover:text-red-400">Services</a></li>
-        <li><a href="gallery.html" class="hover:text-red-400">Gallery</a></li>
-        <li><a href="faq.html" class="hover:text-red-400">FAQ</a></li>
-        <li><a href="contact.html" class="hover:text-red-400">Contact</a></li>
+      <h4 class="font-bold text-white mb-3">Site</h4>
+      <ul class="space-y-2">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/services.html" class="hover:text-white">Services</a></li>
+        <li><a href="/gallery.html" class="hover:text-white">Gallery</a></li>
+        <li><a href="/about.html" class="hover:text-white">About</a></li>
+        <li><a href="/faq.html" class="hover:text-white">FAQ</a></li>
+        <li><a href="/car-care.html" class="hover:text-white">Car Care</a></li>
+        <li><a href="/contact.html" class="hover:text-white">Contact</a></li>
       </ul>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 lg:px-8 mt-10 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row justify-between text-xs text-zinc-500">
-    <p>© <span class="js-year">2026</span> Earl Scheib Of Concord. All rights reserved.</p>
-    <p>Family-owned auto body &amp; paint shop · Concord, CA</p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-sm">
+    <p>&copy; <span data-current-year>2026</span> Earl Scheib of Concord. All rights reserved.</p>
+    <p>Locally owned and operated · Concord, CA</p>
   </div>
 </footer>
 
-<a href="tel:+19256097780" class="callbar md:hidden">Call us · (925) 609-7780</a>
-
-<script>document.querySelectorAll('.js-year').forEach(e=>e.textContent=new Date().getFullYear());</script>
-<script src="js/main.js"></script>
+<a href="tel:+19256097780" class="mobile-call-bar" aria-label="Call Earl Scheib of Concord">📞 Call (925) 609-7780</a>
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>

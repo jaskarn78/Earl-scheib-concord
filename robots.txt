@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jaskarn78.github.io/Earl-scheib-concord/sitemap.xml
+Sitemap: https://www.earlscheibconcord.com/sitemap.xml

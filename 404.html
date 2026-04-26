@@ -1,24 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Page Not Found | Earl Scheib Of Concord</title>
-<meta name="robots" content="noindex">
-<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Page not found | Earl Scheib of Concord</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="css/styles.css">
+<script>tailwind.config={theme:{extend:{colors:{'es-red':'#c8102e','es-red-dark':'#9a0c23','es-ink':'#0b0b0d','es-mist':'#f4f5f7'}}}};</script>
+<link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
-<body class="bg-zinc-900 text-white min-h-screen flex items-center">
-  <div class="max-w-xl mx-auto px-4 lg:px-8 text-center py-16">
-    <p class="text-red-500 font-bold tracking-widest uppercase text-xs">404</p>
-    <h1 class="text-4xl md:text-5xl font-extrabold mt-3">Wrong turn.</h1>
-    <p class="mt-4 text-zinc-400">This page doesn't exist — but our shop does. Stop by Mon–Fri 8am–4:30pm, or call us.</p>
-    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-3">
-      <a href="index.html" class="bg-red-600 hover:bg-red-700 font-bold px-6 py-3 rounded-md">Back to home</a>
-      <a href="tel:+19256097780" class="border-2 border-zinc-600 hover:border-red-500 font-bold px-6 py-3 rounded-md">Call (925) 609-7780</a>
-    </div>
+<body class="bg-es-ink text-white min-h-screen flex items-center justify-center px-4">
+<main class="text-center max-w-xl">
+  <p class="text-sm uppercase tracking-widest font-semibold text-es-red mb-3">404</p>
+  <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">This page took a wrong turn.</h1>
+  <p class="text-lg text-gray-300 mb-8">The URL you followed doesn't exist on our site. Try heading home, or call the shop &mdash; we're easier to reach by phone anyway.</p>
+  <div class="flex flex-col sm:flex-row gap-3 justify-center">
+    <a href="/" class="btn-red px-6 py-3.5 rounded-md font-semibold">Go home</a>
+    <a href="tel:+19256097780" class="btn-outline px-6 py-3.5 rounded-md font-semibold">Call (925) 609-7780</a>
   </div>
+</main>
 </body>
 </html>
