@@ -19,10 +19,10 @@
   });
 
   // Contact form: AJAX submit to Formspree (works on static hosts like GH Pages).
-  // Endpoint configured in the Formspree dashboard to forward to
-  // info@earlscheibconcord.com. Free tier accepts AJAX POSTs when the request
-  // sets `Accept: application/json`.
-  var FORM_ENDPOINT = "https://formspree.io/f/mjgjnrpe";
+  // Endpoint configured in the Formspree dashboard to forward to Marco's
+  // shop email. Free tier accepts AJAX POSTs when the request sets
+  // `Accept: application/json`.
+  var FORM_ENDPOINT = "https://formspree.io/f/meevykpb";
 
   var form = document.querySelector("[data-contact-form]");
   if (!form) return;
