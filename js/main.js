@@ -18,38 +18,103 @@
     if (href === path) a.setAttribute("aria-current", "page");
   });
 
-  // contact form: client-side validation only (no backend on GH Pages)
+  // Contact form: AJAX submit to Formspree (works on static hosts like GH Pages).
+  // Endpoint configured in the Formspree dashboard to forward to Marco's
+  // shop email. Free tier accepts AJAX POSTs when the request sets
+  // `Accept: application/json`.
+  var FORM_ENDPOINT = "https://formspree.io/f/meevykpb";
+
   var form = document.querySelector("[data-contact-form]");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var status = form.querySelector("[data-form-status]");
-      var fields = form.querySelectorAll("[required]");
-      var ok = true;
-      fields.forEach(function (f) {
-        if (!f.value.trim()) { ok = false; f.style.borderColor = "#3B64A6"; }
-      });
-      if (!ok) {
-        status.textContent = "Please fill every required field.";
-        status.className = "mt-3 text-sm text-red-600";
-        return;
-      }
-      // Without a backend, fall back to mailto: handoff so messages still reach the shop.
-      var name = form.querySelector("[name=name]").value;
-      var email = form.querySelector("[name=email]").value;
-      var phone = form.querySelector("[name=phone]").value;
-      var msg = form.querySelector("[name=message]").value;
-      var body =
-        "Name: " + name + "%0D%0A" +
-        "Phone: " + phone + "%0D%0A" +
-        "Email: " + email + "%0D%0A%0D%0A" +
-        encodeURIComponent(msg);
-      window.location.href =
-        "mailto:info@earlscheibconcord.com?subject=" +
-        encodeURIComponent("Free estimate request from " + name) +
-        "&body=" + body;
-      status.textContent = "Opening your email app to send. If nothing happens, please call (925) 609-7780.";
-      status.className = "mt-3 text-sm text-green-700";
-    });
+  if (!form) return;
+
+  var status = form.querySelector("[data-form-status]");
+  var submitBtn = form.querySelector('button[type="submit"]');
+
+  function setStatus(message, kind) {
+    if (!status) return;
+    status.textContent = message;
+    status.className =
+      "mt-3 text-sm " +
+      (kind === "error" ? "text-red-600" : kind === "success" ? "text-green-700" : "text-zinc-600");
   }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Required-field validation
+    var fields = form.querySelectorAll("[required]");
+    var ok = true;
+    fields.forEach(function (f) {
+      if (!f.value.trim()) {
+        ok = false;
+        f.style.borderColor = "#dc2626";
+      } else {
+        f.style.borderColor = "";
+      }
+    });
+    if (!ok) {
+      setStatus("Please fill every required field.", "error");
+      return;
+    }
+
+    // Honeypot — bots fill hidden fields, humans don't
+    var honeypot = form.querySelector('[name="_honey"]');
+    if (honeypot && honeypot.value) {
+      setStatus("Thanks — your message has been sent.", "success");
+      return;
+    }
+
+    var name = (form.querySelector("[name=name]") || {}).value || "";
+    var data = {
+      name: name,
+      phone: (form.querySelector("[name=phone]") || {}).value || "",
+      email: (form.querySelector("[name=email]") || {}).value || "",
+      vehicle: (form.querySelector("[name=vehicle]") || {}).value || "",
+      message: (form.querySelector("[name=message]") || {}).value || "",
+      _subject: "Free estimate request from " + name,
+      _template: "table",
+      _captcha: "false"
+    };
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.dataset.label = submitBtn.textContent;
+      submitBtn.textContent = "Sending…";
+    }
+    setStatus("Sending your message…", "info");
+
+    fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(function (res) {
+        return res.json().then(function (body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function (result) {
+        if (result.ok && (result.body.success === "true" || result.body.success === true)) {
+          form.reset();
+          setStatus(
+            "Thanks! Your message has been sent. We'll be in touch within one business day. Need it sooner? Call (925) 609-7780.",
+            "success"
+          );
+        } else {
+          throw new Error((result.body && result.body.message) || "Submission failed");
+        }
+      })
+      .catch(function () {
+        setStatus(
+          "Something went wrong sending your message. Please call (925) 609-7780 or email info@earlscheibconcord.com directly.",
+          "error"
+        );
+      })
+      .then(function () {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = submitBtn.dataset.label || "Send message";
+        }
+      });
+  });
 })();

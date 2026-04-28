@@ -34,7 +34,7 @@
     }
   }
 </script>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 <body class="bg-stone-50 text-zinc-900">
 
@@ -126,9 +126,11 @@
           <input type="checkbox" class="mt-1" name="sms_optin">
           <span>I agree to receive SMS text messages from Earl Scheib Of Concord about my vehicle repair status and service follow-ups. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out. HELP for help.</span>
         </label>
+        <!-- honeypot: bots fill this; humans never see it -->
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
         <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md">Send message</button>
         <p data-form-status class="mt-2 text-sm" aria-live="polite"></p>
-        <p class="text-xs text-zinc-500">Submitting opens your email app addressed to info@earlscheibconcord.com. Prefer to call? <a class="text-red-600 font-semibold hover:underline" href="tel:+19256097780">(925) 609-7780</a>.</p>
+        <p class="text-xs text-zinc-500">We'll reply within one business day. Prefer to call? <a class="text-red-600 font-semibold hover:underline" href="tel:+19256097780">(925) 609-7780</a>.</p>
       </form>
     </div>
 
@@ -179,6 +181,6 @@
 
 <a href="tel:+19256097780" class="callbar md:hidden">Call us · (925) 609-7780</a>
 <script>document.querySelectorAll('.js-year').forEach(e=>e.textContent=new Date().getFullYear());</script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
