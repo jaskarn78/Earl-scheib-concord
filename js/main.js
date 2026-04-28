@@ -109,9 +109,11 @@
         }
       })
       .catch(function (err) {
-        var detail = err && err.message ? " [debug: " + err.message + "]" : "";
+        // Log the underlying error to the console for debugging without
+        // putting raw error text in the user-facing status copy.
+        if (window && window.console) console.error("contact-form submit failed:", err);
         setStatus(
-          "Something went wrong sending your message. Please call (925) 609-7780 or email info@earlscheibconcord.com directly." + detail,
+          "Something went wrong sending your message. Please call (925) 609-7780 or email info@earlscheibconcord.com directly.",
           "error"
         );
       })
