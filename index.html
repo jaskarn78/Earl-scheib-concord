@@ -25,18 +25,18 @@
     theme: {
       extend: {
         colors: {
-          brand: { blue: '#3B64A6', dark: '#0a0a0a', slate: '#18181b' },
+          brand: { blue: '#1A2D4D', dark: '#0a0a0a', slate: '#18181b' },
           red: {
-            50:  '#F2F6FC',
-            100: '#E1EAF7',
-            200: '#B9CAE6',
-            300: '#93AAD5',
-            400: '#7395CD',
-            500: '#5179B7',
-            600: '#3B64A6',
-            700: '#2F5085',
-            800: '#274370',
-            900: '#1A2D4D'
+            50:  '#FFF0F1',
+            100: '#FFD6DA',
+            200: '#FFADB5',
+            300: '#FF8490',
+            400: '#F05060',
+            500: '#D91F2F',
+            600: '#C8202F',
+            700: '#A81828',
+            800: '#8B1220',
+            900: '#6B0D18'
           }
         },
         fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
@@ -77,11 +77,10 @@
 <body class="bg-stone-50 text-zinc-900">
 
 <!-- Header -->
-<header class="sticky top-0 z-40 bg-zinc-900/95 backdrop-blur text-white">
+<header class="sticky top-0 z-40 backdrop-blur text-white" style="background-color:#1A2D4D; border-bottom:3px solid #C8202F;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16">
-    <a href="index.html" class="flex items-center gap-2 font-extrabold tracking-tight">
-      <span class="inline-block w-7 h-7 rounded bg-red-600"></span>
-      <span class="text-base sm:text-lg">EARL SCHEIB <span class="text-red-500">/</span> CONCORD</span>
+    <a href="index.html" class="flex items-center">
+      <img src="img/logo.png" alt="Earl Scheib of Concord — Auto Paint Body Collision" style="height:44px; width:auto; filter:brightness(0) invert(1);">
     </a>
     <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
       <a class="nav-link hover:text-red-400" href="index.html">Home</a>
@@ -117,38 +116,38 @@
 </header>
 
 <!-- Hero -->
-<section class="hero-grit text-white">
+<section style="background-color:#F8F7F4;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8 py-16 md:py-28 grid md:grid-cols-2 gap-12 items-center">
     <div>
-      <p class="text-red-400 font-bold tracking-widest uppercase text-xs mb-4">Concord, CA · Since 2010</p>
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight">
-        Paint jobs done right. <span class="text-red-500">Priced to surprise you.</span>
+      <p style="color:#C8202F;" class="font-bold tracking-widest uppercase text-xs mb-4">Concord, CA · Since 2010</p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight" style="color:#1A2D4D;">
+        Paint jobs done right. <span style="color:#C8202F;">Priced to surprise you.</span>
       </h1>
-      <p class="mt-6 text-lg text-zinc-300 max-w-xl">
+      <p class="mt-6 text-lg max-w-xl" style="color:#4b5563;">
         Higher-quality materials, real prep work, and a personal commitment to workmanship —
         for less than you'd expect from a body shop. Three paint packages with warranties up to six years.
       </p>
       <div class="mt-8 flex flex-col sm:flex-row gap-3">
-        <a href="https://marcosris.setmore.com/marco" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 font-bold px-6 py-4 rounded-md">
+        <a href="https://marcosris.setmore.com/marco" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 font-bold px-6 py-4 rounded-md" style="background-color:#C8202F; color:#ffffff;">
           Book a free in-person estimate
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="tel:+19256097780" class="inline-flex items-center justify-center gap-2 border border-zinc-600 hover:border-red-500 px-6 py-4 rounded-md font-semibold">
+        <a href="tel:+19256097780" class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-md font-semibold" style="border:2px solid #1A2D4D; color:#1A2D4D;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Call (925) 609-7780
         </a>
       </div>
       <ul class="mt-10 grid grid-cols-3 gap-4 text-sm">
-        <li><span class="block text-2xl font-extrabold text-red-400">14+</span><span class="text-zinc-400">Years of new ownership</span></li>
-        <li><span class="block text-2xl font-extrabold text-red-400">6 yr</span><span class="text-zinc-400">Top-tier warranty</span></li>
-        <li><span class="block text-2xl font-extrabold text-red-400">5–7</span><span class="text-zinc-400">Days typical turnaround</span></li>
+        <li><span class="block text-2xl font-extrabold" style="color:#C8202F;">15+</span><span style="color:#6b7280;">Years of new ownership</span></li>
+        <li><span class="block text-2xl font-extrabold" style="color:#C8202F;">6 yr</span><span style="color:#6b7280;">Top-tier warranty</span></li>
+        <li><span class="block text-2xl font-extrabold" style="color:#C8202F;">5–7</span><span style="color:#6b7280;">Days typical turnaround</span></li>
       </ul>
     </div>
     <div class="relative">
-      <div class="aspect-[4/3] rounded-xl overflow-hidden border border-zinc-700 gallery-ph">
+      <div class="aspect-[4/3] rounded-xl overflow-hidden gallery-ph" style="border:1px solid #d1d5db;">
         [Hero photo: a freshly repainted classic American sedan in the Concord shop bay]
       </div>
-      <div class="absolute -bottom-4 -left-4 bg-red-600 px-4 py-3 rounded-md text-sm font-bold shadow-xl hidden sm:block">
+      <div class="absolute -bottom-4 -left-4 px-4 py-3 rounded-md text-sm font-bold shadow-xl hidden sm:block" style="background-color:#C8202F; color:#ffffff;">
         Book your free in-person estimate
       </div>
     </div>
@@ -156,67 +155,17 @@
 </section>
 
 <!-- Trust strip -->
-<section class="bg-white border-y border-zinc-200">
+<section style="background-color:#1A2D4D;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-    <div><p class="font-extrabold text-zinc-900">OEM color match</p><p class="text-xs text-zinc-500 mt-1">Factory-grade finishes</p></div>
-    <div><p class="font-extrabold text-zinc-900">All insurance</p><p class="text-xs text-zinc-500 mt-1">We handle the adjuster</p></div>
-    <div><p class="font-extrabold text-zinc-900">Production-line speed</p><p class="text-xs text-zinc-500 mt-1">Usually 5–7 days</p></div>
-    <div><p class="font-extrabold text-zinc-900">Up to 6-year warranty</p><p class="text-xs text-zinc-500 mt-1">On Diamond service</p></div>
-  </div>
-</section>
-
-<!-- Services preview -->
-<section class="py-20 bg-stone-50">
-  <div class="max-w-7xl mx-auto px-4 lg:px-8">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-      <div>
-        <p class="slash text-red-600 font-bold uppercase tracking-widest text-xs">Three packages</p>
-        <h2 class="text-3xl md:text-4xl font-extrabold mt-2">Pick the paint job that fits your car.</h2>
-      </div>
-      <a href="services.html" class="text-red-600 font-bold hover:underline">See full breakdown →</a>
-    </div>
-    <div class="grid md:grid-cols-3 gap-6 items-stretch">
-      <!-- Silver -->
-      <article class="bg-white p-7 rounded-xl border border-zinc-200 lift flex flex-col">
-        <h3 class="text-2xl font-extrabold">Silver</h3>
-        <p class="mt-1 text-sm text-zinc-600">A clean, honest refresh.</p>
-        <ul class="mt-6 space-y-2 text-sm text-zinc-700">
-          <li>✓ 2 coats top acrylic enamel</li>
-          <li>✓ 1-year warranty</li>
-          <li>✓ Generic solid colors</li>
-        </ul>
-      </article>
-      <!-- Platinum (most popular) -->
-      <article class="relative bg-white p-7 rounded-xl border-2 border-red-600 lift flex flex-col">
-        <span class="inline-flex self-start items-center bg-zinc-900 text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full">Most Popular</span>
-        <h3 class="text-2xl font-extrabold mt-3">Platinum</h3>
-        <p class="mt-1 text-sm text-zinc-600">Excellent value and durability.</p>
-        <ul class="mt-6 space-y-2 text-sm text-zinc-700">
-          <li>✓ 3 coats acrylic standard urethane basecoat</li>
-          <li>✓ 2 coats clearcoat</li>
-          <li>✓ 3-year warranty</li>
-          <li>✓ OEM &amp; generic colors</li>
-        </ul>
-      </article>
-      <!-- Diamond (premium, dark featured) -->
-      <article class="relative bg-zinc-900 text-white p-7 rounded-xl lift flex flex-col">
-        <span class="inline-flex self-start items-center bg-zinc-800 border border-zinc-700 text-zinc-300 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full">Best Long-Term Value</span>
-        <h3 class="text-2xl font-extrabold mt-3 text-red-400">Diamond</h3>
-        <p class="mt-1 text-sm text-zinc-300">Maximum gloss, longest protection.</p>
-        <ul class="mt-6 space-y-2 text-sm text-zinc-200">
-          <li>✓ 3 coats premium urethane basecoat</li>
-          <li>✓ 3 coats Euro-Clearcoat</li>
-          <li>✓ UV sunscreen additive</li>
-          <li>✓ 6-year warranty</li>
-          <li>✓ OEM &amp; generic colors</li>
-        </ul>
-      </article>
-    </div>
+    <div><p class="font-extrabold" style="color:#ffffff;">OEM color match</p><p class="text-xs mt-1" style="color:#93c5fd;">Factory-grade finishes</p></div>
+    <div><p class="font-extrabold" style="color:#ffffff;">All insurance</p><p class="text-xs mt-1" style="color:#93c5fd;">We handle the adjuster</p></div>
+    <div><p class="font-extrabold" style="color:#ffffff;">Production-line speed</p><p class="text-xs mt-1" style="color:#93c5fd;">Usually 5–7 days</p></div>
+    <div><p class="font-extrabold" style="color:#ffffff;">Up to 6-year warranty</p><p class="text-xs mt-1" style="color:#93c5fd;">On Diamond service</p></div>
   </div>
 </section>
 
 <!-- Paint vs newer car comparison -->
-<section id="paint-vs-new-car" class="py-20 bg-white">
+<section id="paint-vs-new-car" class="py-20" style="background-color:#EEF2F8;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
     <div class="text-center max-w-3xl mx-auto mb-12">
       <p class="slash text-red-600 font-bold uppercase tracking-widest text-xs">Before you buy a newer car</p>
@@ -226,13 +175,13 @@
 
     <div class="relative grid md:grid-cols-2 gap-6 items-stretch">
       <!-- Newer used car (light, less prominent) -->
-      <article class="bg-stone-50 p-7 rounded-xl border border-zinc-200 flex flex-col">
+      <article style="background-color:#ffffff;" class="p-7 rounded-xl border border-zinc-200 flex flex-col">
         <p class="text-[10px] font-bold tracking-widest uppercase text-zinc-500">A newer used car</p>
-        <p class="mt-3 text-4xl font-extrabold text-zinc-900">$31,000</p>
-        <p class="text-sm text-zinc-500 mt-1">2025 average for a 3-year-old vehicle</p>
+        <p class="mt-3 text-4xl font-extrabold text-zinc-900">$32,400</p>
+        <p class="text-sm text-zinc-500 mt-1">2026 average for a 3-year-old sedan</p>
         <div class="mt-5 pt-5 border-t border-zinc-200">
-          <p class="text-[10px] font-bold tracking-widest uppercase text-zinc-500">Financed at 12% APR</p>
-          <p class="mt-1 text-2xl font-extrabold text-zinc-900">$689/mo <span class="text-base font-bold text-zinc-500">× 60 months</span></p>
+          <p class="text-[10px] font-bold tracking-widest uppercase text-zinc-500">Financed at 7.5%</p>
+          <p class="mt-1 text-2xl font-extrabold text-zinc-900">$649/mo <span class="text-base font-bold text-zinc-500">× 60 months</span></p>
         </div>
         <ul class="mt-6 space-y-2 text-sm text-zinc-700">
           <li>— $400/year higher insurance</li>
@@ -240,7 +189,7 @@
           <li>— Depreciates ~20% in year one</li>
           <li>— 5 years of car payments</li>
         </ul>
-        <p class="mt-6 text-[10px] text-zinc-400 leading-snug">Source: Edmunds Q3 2025 Used Car Report; average 3-year-old vehicle ATP $31,067, average used-car loan rate ≈12% APR.</p>
+        <p class="mt-6 text-[10px] text-zinc-400 leading-snug">Source: Edmunds Q1 2026 Used Car Report; average 3-year-old sedan ATP $32,400, financed at 7.5% APR.</p>
       </article>
 
       <!-- Paint the car you have (featured, dark) -->
@@ -262,7 +211,7 @@
       </article>
 
       <!-- vs badge (desktop only) -->
-      <span aria-hidden="true" class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full text-white font-extrabold text-sm items-center justify-center shadow-lg ring-4 ring-white" style="background-color:#3B64A6;">vs</span>
+      <span aria-hidden="true" class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full text-white font-extrabold text-sm items-center justify-center shadow-lg ring-4 ring-white" style="background-color:#1A2D4D;">vs</span>
     </div>
 
     <div class="text-center mt-10">
@@ -271,8 +220,58 @@
   </div>
 </section>
 
+<!-- Services preview -->
+<section class="py-20" style="background-color:#F8F7F4;">
+  <div class="max-w-7xl mx-auto px-4 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+      <div>
+        <p class="slash text-red-600 font-bold uppercase tracking-widest text-xs">Three packages</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold mt-2">Pick the paint job that fits your car.</h2>
+      </div>
+      <a href="services.html" class="text-red-600 font-bold hover:underline">See full breakdown →</a>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 items-stretch">
+      <!-- Silver -->
+      <article class="bg-white p-7 rounded-xl border border-zinc-200 lift flex flex-col">
+        <h3 class="text-2xl font-extrabold">Silver</h3>
+        <p class="mt-1 text-sm text-zinc-600">A clean, honest refresh.</p>
+        <ul class="mt-6 space-y-2 text-sm text-zinc-700">
+          <li>✓ 2 coats top acrylic enamel</li>
+          <li>✓ 1-year warranty</li>
+          <li>✓ Generic solid colors</li>
+        </ul>
+      </article>
+      <!-- Platinum (most popular) -->
+      <article class="relative bg-white p-7 rounded-xl border-2 border-red-600 lift flex flex-col">
+        <span class="inline-flex self-start items-center text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full" style="background-color:#1A2D4D;">Most Popular</span>
+        <h3 class="text-2xl font-extrabold mt-3">Platinum</h3>
+        <p class="mt-1 text-sm text-zinc-600">Excellent value and durability.</p>
+        <ul class="mt-6 space-y-2 text-sm text-zinc-700">
+          <li>✓ 3 coats acrylic standard urethane basecoat</li>
+          <li>✓ 2 coats clearcoat</li>
+          <li>✓ 3-year warranty</li>
+          <li>✓ OEM &amp; generic colors</li>
+        </ul>
+      </article>
+      <!-- Diamond (premium) -->
+      <article class="relative bg-white p-7 rounded-xl border-2 lift flex flex-col" style="border-color:#1A2D4D;">
+        <span class="inline-flex self-start items-center text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full" style="background-color:#1A2D4D;">Best Long-Term Value</span>
+        <h3 class="text-2xl font-extrabold mt-3" style="color:#1A2D4D;">Diamond</h3>
+        <p class="mt-1 text-sm text-zinc-600">Maximum gloss, longest protection.</p>
+        <ul class="mt-6 space-y-2 text-sm text-zinc-700">
+          <li>✓ 3 coats premium urethane basecoat</li>
+          <li>✓ 3 coats Euro-Clearcoat</li>
+          <li>✓ UV sunscreen additive</li>
+          <li>✓ 6-year warranty</li>
+          <li>✓ OEM &amp; generic colors</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- Why us -->
-<section class="bg-zinc-900 text-white py-20">
+<section class="text-white py-20" style="background-color:#1A2D4D;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
     <div>
       <p class="slash text-red-500 font-bold uppercase tracking-widest text-xs">Since 2010</p>
@@ -286,19 +285,19 @@
       <a href="about.html" class="inline-block mt-6 font-bold text-red-400 hover:underline">Read our story →</a>
     </div>
     <ul class="grid sm:grid-cols-2 gap-4">
-      <li class="bg-zinc-800 rounded-xl p-5 border border-zinc-700">
+      <li class="rounded-xl p-5" style="background-color:#243d66; border:1px solid #2d4d80;">
         <p class="font-bold">Real prep, every job</p>
         <p class="text-sm text-zinc-400 mt-1">Machine and hand sanding, dust removal, chemical cleaning, seal coat — included.</p>
       </li>
-      <li class="bg-zinc-800 rounded-xl p-5 border border-zinc-700">
+      <li class="rounded-xl p-5" style="background-color:#243d66; border:1px solid #2d4d80;">
         <p class="font-bold">Insurance-friendly</p>
         <p class="text-sm text-zinc-400 mt-1">We work with all insurance companies and handle the adjuster on your behalf.</p>
       </li>
-      <li class="bg-zinc-800 rounded-xl p-5 border border-zinc-700">
+      <li class="rounded-xl p-5" style="background-color:#243d66; border:1px solid #2d4d80;">
         <p class="font-bold">Color match expertise</p>
         <p class="text-sm text-zinc-400 mt-1">Same paint and processes as the best dealers and body shops.</p>
       </li>
-      <li class="bg-zinc-800 rounded-xl p-5 border border-zinc-700">
+      <li class="rounded-xl p-5" style="background-color:#243d66; border:1px solid #2d4d80;">
         <p class="font-bold">Honest options</p>
         <p class="text-sm text-zinc-400 mt-1">For minor repairs we'll discuss self-pay vs insurance — whichever costs you less.</p>
       </li>
@@ -307,24 +306,24 @@
 </section>
 
 <!-- Reviews preview -->
-<section class="py-20 bg-stone-50">
+<section class="py-20" style="background-color:#EEF2F8;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-12">
       <p class="slash text-red-600 font-bold uppercase tracking-widest text-xs">What customers say</p>
       <h2 class="text-3xl md:text-4xl font-extrabold mt-2">Word of mouth from East Bay drivers.</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
-      <figure class="bg-white p-6 rounded-xl border border-zinc-200">
+      <figure class="p-6 rounded-xl" style="background-color:#ffffff; border:1px solid #d4dce8;">
         <div class="text-red-600 font-bold">★★★★★</div>
         <blockquote class="mt-3 text-zinc-700 leading-relaxed">"Within two hours of hitting the road we had THREE different people comment on our 'beautiful old Caddy.' Thanks so much. Great experience."</blockquote>
         <figcaption class="mt-4 text-sm font-semibold text-zinc-900">Anthony R. <span class="text-zinc-500 font-normal">· Martinez, CA</span></figcaption>
       </figure>
-      <figure class="bg-white p-6 rounded-xl border border-zinc-200">
+      <figure class="p-6 rounded-xl" style="background-color:#ffffff; border:1px solid #d4dce8;">
         <div class="text-red-600 font-bold">★★★★★</div>
         <blockquote class="mt-3 text-zinc-700 leading-relaxed">"We just wanted to say thank you for going above and beyond our expectations. We will definitely recommend you to everyone we know."</blockquote>
         <figcaption class="mt-4 text-sm font-semibold text-zinc-900">Judy B. <span class="text-zinc-500 font-normal">· San Francisco, CA</span></figcaption>
       </figure>
-      <figure class="bg-white p-6 rounded-xl border border-zinc-200">
+      <figure class="p-6 rounded-xl" style="background-color:#ffffff; border:1px solid #d4dce8;">
         <div class="text-red-600 font-bold">★★★★★</div>
         <blockquote class="mt-3 text-zinc-700 leading-relaxed">"I was very surprised and pleased at the price quoted. The paint job is quite amazing. It's a first-class job."</blockquote>
         <figcaption class="mt-4 text-sm font-semibold text-zinc-900">Andrew D. <span class="text-zinc-500 font-normal">· Concord, CA</span></figcaption>
@@ -337,7 +336,7 @@
 </section>
 
 <!-- CTA band -->
-<section class="bg-red-600 text-white py-14">
+<section class="text-white py-14" style="background-color:#C8202F;">
   <div class="max-w-5xl mx-auto px-4 lg:px-8 text-center">
     <h2 class="text-3xl md:text-4xl font-extrabold">Book your free estimate.</h2>
     <p class="mt-3 text-red-100 max-w-2xl mx-auto">Each car is different. Call or message us to schedule a visit and we'll talk through the right service for your budget — no pressure, no phone-quote runaround.</p>
@@ -349,7 +348,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-zinc-950 text-zinc-300 py-14 border-t border-zinc-800">
+<footer class="text-zinc-300 py-14" style="background-color:#1A2D4D; border-top:1px solid #243d66;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8 grid md:grid-cols-4 gap-10">
     <div class="md:col-span-2">
       <p class="font-extrabold text-white text-lg">EARL SCHEIB <span class="text-red-500">/</span> CONCORD</p>
@@ -378,7 +377,7 @@
       </ul>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 lg:px-8 mt-10 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row justify-between text-xs text-zinc-500">
+  <div class="max-w-7xl mx-auto px-4 lg:px-8 mt-10 pt-6 flex flex-col sm:flex-row justify-between text-xs text-zinc-400" style="border-top:1px solid #243d66;">
     <p>© <span id="year">2026</span> Earl Scheib Of Concord. All rights reserved.</p>
     <p>Family-owned auto body &amp; paint shop · Concord, CA</p>
   </div>
