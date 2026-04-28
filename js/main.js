@@ -108,9 +108,10 @@
           throw new Error(body.message || ("Submission failed (HTTP " + (result.status || "?") + ")"));
         }
       })
-      .catch(function () {
+      .catch(function (err) {
+        var detail = err && err.message ? " [debug: " + err.message + "]" : "";
         setStatus(
-          "Something went wrong sending your message. Please call (925) 609-7780 or email info@earlscheibconcord.com directly.",
+          "Something went wrong sending your message. Please call (925) 609-7780 or email info@earlscheibconcord.com directly." + detail,
           "error"
         );
       })
