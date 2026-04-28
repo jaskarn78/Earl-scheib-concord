@@ -90,18 +90,22 @@
     })
       .then(function (res) {
         return res.json().then(function (body) {
-          return { ok: res.ok, body: body };
+          return { ok: res.ok, status: res.status, body: body };
         });
       })
       .then(function (result) {
-        if (result.ok && (result.body.success === "true" || result.body.success === true)) {
+        var body = result.body || {};
+        // Formspree returns {ok: true}; Formsubmit returns {success: "true"}.
+        // Accept both so the relay can be swapped without breaking the success path.
+        var ok = result.ok && (body.ok === true || body.success === true || body.success === "true");
+        if (ok) {
           form.reset();
           setStatus(
             "Thanks! Your message has been sent. We'll be in touch within one business day. Need it sooner? Call (925) 609-7780.",
             "success"
           );
         } else {
-          throw new Error((result.body && result.body.message) || "Submission failed");
+          throw new Error(body.message || ("Submission failed (HTTP " + (result.status || "?") + ")"));
         }
       })
       .catch(function () {
