@@ -18,11 +18,11 @@
     if (href === path) a.setAttribute("aria-current", "page");
   });
 
-  // Contact form: AJAX submit to Formsubmit.co (works on static hosts like GH Pages).
-  // Setup: first real submission triggers a one-time verification email to
-  // info@earlscheibconcord.com — click the link to activate forwarding.
-  // After that, every submission arrives as an email, no maintenance required.
-  var FORM_ENDPOINT = "https://formsubmit.co/ajax/info@earlscheibconcord.com";
+  // Contact form: AJAX submit to Formspree (works on static hosts like GH Pages).
+  // Endpoint configured in the Formspree dashboard to forward to
+  // info@earlscheibconcord.com. Free tier accepts AJAX POSTs when the request
+  // sets `Accept: application/json`.
+  var FORM_ENDPOINT = "https://formspree.io/f/mjgjnrpe";
 
   var form = document.querySelector("[data-contact-form]");
   if (!form) return;
