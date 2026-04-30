@@ -170,3 +170,8 @@ details > div { margin-top: 12px; color: #4b5563; line-height: 1.65; }
 /* mobile menu */
 .mobile-menu { display: none; }
 .mobile-menu.open { display: block; }
+
+/* Setmore booking iframe — content height varies by viewport */
+.setmore-iframe { height: 560px; }
+@media (min-width: 768px)  { .setmore-iframe { height: 720px; } }
+@media (min-width: 1024px) { .setmore-iframe { height: 820px; } }
