@@ -5,9 +5,26 @@
   var btn = document.querySelector("[data-menu-toggle]");
   var menu = document.querySelector("[data-mobile-menu]");
   if (btn && menu) {
+    // Toggle on hamburger click
     btn.addEventListener("click", function () {
       var open = menu.classList.toggle("open");
       btn.setAttribute("aria-expanded", String(open));
+    });
+
+    // Close when any nav link is tapped
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        menu.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Close when tapping outside the menu
+    document.addEventListener("click", function (e) {
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
     });
   }
 
