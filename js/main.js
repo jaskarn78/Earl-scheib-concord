@@ -64,7 +64,7 @@
     fields.forEach(function (f) {
       if (!f.value.trim()) {
         ok = false;
-        f.style.borderColor = "#dc2626";
+        f.style.borderColor = "#3b64a6";
       } else {
         f.style.borderColor = "";
       }
