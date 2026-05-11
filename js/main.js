@@ -39,7 +39,7 @@
   // Endpoint configured in the Formspree dashboard to forward to Marco's
   // shop email. Free tier accepts AJAX POSTs when the request sets
   // `Accept: application/json`.
-  var FORM_ENDPOINT = "https://formspree.io/f/meevykpb";
+  var FORM_ENDPOINT = "https://formspree.io/f/xbdwqvrl";
 
   var form = document.querySelector("[data-contact-form]");
   if (!form) return;
