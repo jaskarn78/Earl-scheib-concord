@@ -1,6 +1,63 @@
 // Earl Scheib Of Concord — minimal vanilla JS
 
+// ---- measurement helpers (Google tag: GA4 + Google Ads) ----------------------
+// Every call is a no-op when the Google tag is blocked, so the site never breaks.
+function eswTags() { return window.ESW_TAGS || {}; }
+function eswTrack(eventName, params) {
+  if (typeof window.gtag !== "function") return;
+  try { window.gtag("event", eventName, params || {}); } catch (e) {}
+}
+// Google Ads conversion (native tag). `label` is the per-action label from Ads.
+function eswAdsConversion(label, params) {
+  var t = eswTags();
+  if (typeof window.gtag !== "function" || !t.ADS_ID || !label) return;
+  var p = params || {};
+  p.send_to = t.ADS_ID + "/" + label;
+  try { window.gtag("event", "conversion", p); } catch (e) {}
+}
+// Enhanced conversions: hand the Google tag the lead's own contact details so
+// Google can match the conversion to the ad click. The tag hashes them (SHA-256)
+// before anything leaves the browser; nothing is stored here.
+function eswSetUserData(name, email, phone) {
+  if (typeof window.gtag !== "function") return;
+  var data = {};
+  var e = (email || "").trim().toLowerCase();
+  if (e) data.email = e;
+  var digits = (phone || "").replace(/[^0-9]/g, "");
+  if (digits.length === 10) data.phone_number = "+1" + digits;          // US default → E.164
+  else if (digits.length === 11 && digits.charAt(0) === "1") data.phone_number = "+" + digits;
+  else if (digits.length > 10) data.phone_number = "+" + digits;
+  var parts = (name || "").trim().split(/\s+/);
+  if (parts[0]) data.address = { first_name: parts[0], last_name: parts.slice(1).join(" ") };
+  if (Object.keys(data).length) { try { window.gtag("set", "user_data", data); } catch (e2) {} }
+}
+// Phone-number taps: GA4 event + secondary Ads conversion.
+function eswWirePhoneLinks() {
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+    if (a.dataset.eswWired) return;
+    a.dataset.eswWired = "1";
+    a.addEventListener("click", function () {
+      eswTrack("phone_call_click", { link_url: a.getAttribute("href"), page_path: window.location.pathname });
+      eswAdsConversion(eswTags().ADS_CALL_LABEL);
+    });
+  });
+}
+// "Book a free in-person estimate" buttons: engagement signal on the way to the form.
+function eswWireEstimateButtons() {
+  document.querySelectorAll('a[href$="contact.html"], a[href*="contact.html#"]').forEach(function (a) {
+    if (a.dataset.eswWired) return;
+    if (!/estimate|book/i.test(a.textContent || "")) return; // CTA buttons only, not the nav link
+    a.dataset.eswWired = "1";
+    a.addEventListener("click", function () {
+      eswTrack("book_estimate_click", { link_text: (a.textContent || "").trim().slice(0, 60), page_path: window.location.pathname });
+    });
+  });
+}
+
 (function () {
+  eswWirePhoneLinks();
+  eswWireEstimateButtons();
+
   // mobile menu toggle
   var btn = document.querySelector("[data-menu-toggle]");
   var menu = document.querySelector("[data-mobile-menu]");
@@ -116,6 +173,11 @@
         // Accept both so the relay can be swapped without breaking the success path.
         var ok = result.ok && (body.ok === true || body.success === true || body.success === "true");
         if (ok) {
+          // Lead conversion: GA4 key event + primary Google Ads conversion, with
+          // enhanced-conversion user data set first so the match can happen.
+          eswSetUserData(name, data.email, data.phone);
+          eswTrack("generate_lead", { form_id: "contact", lead_type: "estimate_request", page_path: window.location.pathname });
+          eswAdsConversion(eswTags().ADS_LEAD_LABEL);
           form.reset();
           setStatus(
             "Thanks! Your message has been sent. We'll be in touch within one business day. Need it sooner? Call (925) 609-7780.",
