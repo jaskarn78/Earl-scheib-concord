@@ -9,9 +9,9 @@
 // Until ADS_ID is set, nothing Ads-related fires and GA4 keeps working alone.
 window.ESW_TAGS = {
   GA4_ID: "G-ZCTNDH2BGF",
-  ADS_ID: "",                 // e.g. "AW-123456789"
-  ADS_LEAD_LABEL: "",         // conversion action: "Estimate request (website form)"  — PRIMARY
-  ADS_CALL_LABEL: ""          // conversion action: "Phone click (website)"             — SECONDARY
+  ADS_ID: "AW-1003657239",    // EARL SHEIB, customer 502-485-8775
+  ADS_LEAD_LABEL: "vzU0CID2pPQcEJewyt4D",   // "Estimate request (website form)" — PRIMARY
+  ADS_CALL_LABEL: "4jaYCIP2pPQcEJewyt4D"    // "Phone click (website)" — SECONDARY
 };
 
 (function () {
