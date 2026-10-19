@@ -98,9 +98,47 @@ function eswWireEstimateButtons() {
   // `Accept: application/json`.
   var FORM_ENDPOINT = "https://formspree.io/f/xbdwqvrl";
 
-  var form = document.querySelector("[data-contact-form]");
-  if (!form) return;
+  // Desktop "Schedule your free estimate" button: grows into the form panel.
+  var fab = document.querySelector("[data-sched-open]");
+  var panel = document.getElementById("sched-panel");
+  if (fab && panel) {
+    var closeBtn = panel.querySelector("[data-sched-close]");
+    // Show the button only once the hero (with its own Book/Call buttons) has scrolled away.
+    var hero = document.querySelector("[data-hero]");
+    if ("IntersectionObserver" in window && hero) {
+      new IntersectionObserver(function (entries) {
+        fab.classList.toggle("is-visible", !entries[0].isIntersecting);
+      }, { threshold: 0.15 }).observe(hero);
+    } else {
+      fab.classList.add("is-visible");
+    }
+    var openPanel = function () {
+      panel.classList.add("is-open");
+      fab.classList.add("is-open");
+      fab.setAttribute("aria-expanded", "true");
+      eswTrack("schedule_panel_open", { page_path: window.location.pathname });
+      setTimeout(function () { var f = panel.querySelector("input[name=phone]"); if (f) f.focus(); }, 300);
+    };
+    var closePanel = function () {
+      panel.classList.remove("is-open");
+      fab.classList.remove("is-open");
+      fab.setAttribute("aria-expanded", "false");
+      fab.focus();
+    };
+    fab.addEventListener("click", openPanel);
+    if (closeBtn) closeBtn.addEventListener("click", closePanel);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && panel.classList.contains("is-open")) closePanel();
+    });
+    document.addEventListener("click", function (e) {
+      if (panel.classList.contains("is-open") && !panel.contains(e.target) && !fab.contains(e.target)) closePanel();
+    });
+  }
 
+  // Every form on the page (the homepage has one inline on phones and one in the panel on desktop).
+  document.querySelectorAll("[data-contact-form]").forEach(wireForm);
+
+  function wireForm(form) {
   var status = form.querySelector("[data-form-status]");
   var submitBtn = form.querySelector('button[type="submit"]');
 
@@ -179,7 +217,7 @@ function eswWireEstimateButtons() {
           // Lead conversion: GA4 key event + primary Google Ads conversion, with
           // enhanced-conversion user data set first so the match can happen.
           eswSetUserData(name, data.email, data.phone);
-          eswTrack("generate_lead", { form_id: "contact", lead_type: "estimate_request", page_path: window.location.pathname });
+          eswTrack("generate_lead", { form_id: form.getAttribute("data-form-id") || "contact", lead_type: "estimate_request", page_path: window.location.pathname });
           eswAdsConversion(eswTags().ADS_LEAD_LABEL);
           form.reset();
           setStatus(
@@ -206,4 +244,5 @@ function eswWireEstimateButtons() {
         }
       });
   });
+  }
 })();

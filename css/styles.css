@@ -175,3 +175,44 @@ details > div { margin-top: 12px; color: #4b5563; line-height: 1.65; }
 .setmore-iframe { height: 560px; }
 @media (min-width: 768px)  { .setmore-iframe { height: 720px; } }
 @media (min-width: 1024px) { .setmore-iframe { height: 820px; } }
+
+/* "Schedule your free estimate" floating button (desktop only): the panel grows out of the button */
+.sched-fab, .sched-panel { display: none; }
+@media (min-width: 768px) {
+  .sched-fab {
+    display: inline-flex; align-items: center; gap: 10px;
+    position: fixed; right: 28px; bottom: 28px; z-index: 60;
+    background: var(--es-red); color: #fff; font-weight: 700; font-size: 15px;
+    padding: 14px 22px 14px 18px; border-radius: 9999px; border: 0; cursor: pointer;
+    box-shadow: 0 10px 28px rgba(26,45,77,0.30);
+    transform: translateY(24px); opacity: 0; pointer-events: none;
+    transition: transform .28s cubic-bezier(.2,.8,.2,1), opacity .2s ease, box-shadow .2s ease;
+  }
+  .sched-fab.is-visible { transform: none; opacity: 1; pointer-events: auto; }
+  .sched-fab:hover { box-shadow: 0 14px 34px rgba(26,45,77,0.38); }
+  .sched-fab:focus-visible { outline: 3px solid #1A2D4D; outline-offset: 3px; }
+  .sched-fab.is-open { opacity: 0; transform: scale(.85); pointer-events: none; }
+
+  .sched-panel {
+    display: block; position: fixed; right: 28px; bottom: 28px; z-index: 61;
+    width: 360px; max-height: calc(100vh - 110px); overflow: auto;
+    background: #fff; border-radius: 18px; border: 1px solid #d4dce8;
+    box-shadow: 0 24px 60px rgba(26,45,77,0.30);
+    clip-path: circle(26px at calc(100% - 40px) calc(100% - 26px));
+    visibility: hidden;
+    transition: clip-path .42s cubic-bezier(.2,.8,.2,1), visibility 0s linear .42s;
+  }
+  .sched-panel.is-open {
+    clip-path: circle(140% at calc(100% - 40px) calc(100% - 26px));
+    visibility: visible;
+    transition: clip-path .42s cubic-bezier(.2,.8,.2,1), visibility 0s;
+  }
+  .sched-panel .sched-inner { opacity: 0; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease; }
+  .sched-panel.is-open .sched-inner { opacity: 1; transform: none; transition-delay: .14s; }
+  .sched-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 9999px; border: 0; background: #F1F5F9; color: #1A2D4D; cursor: pointer; font-size: 18px; line-height: 32px; }
+  .sched-close:focus-visible { outline: 3px solid #1A2D4D; outline-offset: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sched-fab, .sched-panel, .sched-panel .sched-inner { transition: opacity .01s !important; }
+  .sched-panel, .sched-panel.is-open { clip-path: none; }
+}
