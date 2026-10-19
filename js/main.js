@@ -86,10 +86,11 @@ function eswWireEstimateButtons() {
   }
 
   // mark active nav
-  var path = window.location.pathname.replace(/index\.html$/, "").replace(/\/$/, "") || "/";
+  // Compare file names only ("/about.html" and "about.html" are the same page; "/" is index.html).
+  var page = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-link").forEach(function (a) {
-    var href = (a.getAttribute("href") || "").replace(/index\.html$/, "").replace(/\/$/, "") || "/";
-    if (href === path) a.setAttribute("aria-current", "page");
+    var href = (a.getAttribute("href") || "").split("#")[0].split("?")[0].split("/").pop() || "index.html";
+    if (href === page) a.setAttribute("aria-current", "page");
   });
 
   // Contact form: AJAX submit to Formspree (works on static hosts like GH Pages).
