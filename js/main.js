@@ -31,14 +31,37 @@ function eswSetUserData(name, email, phone) {
   if (parts[0]) data.address = { first_name: parts[0], last_name: parts.slice(1).join(" ") };
   if (Object.keys(data).length) { try { window.gtag("set", "user_data", data); } catch (e2) {} }
 }
+// Where on the page a link sits, so reports can tell the header button from the hero button.
+function eswPlacement(el) {
+  if (el.classList.contains("callbar")) return "call_bar";
+  if (el.closest("#sched-panel")) return "schedule_panel";
+  if (el.closest("header")) return "header";
+  if (el.closest("footer")) return "footer";
+  if (el.closest("[data-hero]")) return "hero";
+  return "page";
+}
 // Phone-number taps: GA4 event + secondary Ads conversion.
 function eswWirePhoneLinks() {
   document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
     if (a.dataset.eswWired) return;
     a.dataset.eswWired = "1";
     a.addEventListener("click", function () {
-      eswTrack("phone_call_click", { link_url: a.getAttribute("href"), page_path: window.location.pathname });
+      eswTrack("phone_call_click", { link_url: a.getAttribute("href"), placement: eswPlacement(a), page_path: window.location.pathname });
       eswAdsConversion(eswTags().ADS_CALL_LABEL);
+    });
+  });
+}
+// The other ways to set up an estimate, one GA4 event each, so they can be compared:
+// book_online_click (Setmore), directions_click (Google Maps, for walk-ins).
+// Form requests are counted on a successful send (request_time_submit / contact_form_submit).
+function eswWireOptionLinks() {
+  document.querySelectorAll('a[href*="setmore.com"], a[href*="maps.google."], a[href*="google.com/maps"]').forEach(function (a) {
+    if (a.dataset.eswOption) return;
+    a.dataset.eswOption = "1";
+    var href = a.getAttribute("href") || "";
+    var name = /setmore\.com/.test(href) ? "book_online_click" : "directions_click";
+    a.addEventListener("click", function () {
+      eswTrack(name, { placement: eswPlacement(a), page_path: window.location.pathname });
     });
   });
 }
@@ -56,6 +79,7 @@ function eswWireEstimateButtons() {
 
 (function () {
   eswWirePhoneLinks();
+  eswWireOptionLinks();
   eswWireEstimateButtons();
 
   // mobile menu toggle
@@ -228,7 +252,10 @@ function eswWireEstimateButtons() {
           // Lead conversion: GA4 key event + primary Google Ads conversion, with
           // enhanced-conversion user data set first so the match can happen.
           eswSetUserData(name, data.email, data.phone);
-          eswTrack("generate_lead", { form_id: form.getAttribute("data-form-id") || "contact", lead_type: "estimate_request", page_path: window.location.pathname });
+          var formId = form.getAttribute("data-form-id") || "contact";
+          eswTrack("generate_lead", { form_id: formId, lead_type: "estimate_request", page_path: window.location.pathname });
+          // One plain event per kind of form, so the options can be compared without custom reports.
+          eswTrack(formId === "contact" ? "contact_form_submit" : "request_time_submit", { placement: formId, page_path: window.location.pathname });
           eswAdsConversion(eswTags().ADS_LEAD_LABEL);
           form.reset();
           setStatus(
