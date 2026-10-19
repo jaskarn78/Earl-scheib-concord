@@ -1,4 +1,4 @@
-// Earl Scheib Of Concord — minimal vanilla JS
+// Earl Scheib Of Concord - minimal vanilla JS
 
 // ---- measurement helpers (Google tag: GA4 + Google Ads) ----------------------
 // Every call is a no-op when the Google tag is blocked, so the site never breaks.
@@ -131,10 +131,10 @@ function eswWireEstimateButtons() {
       return;
     }
 
-    // Honeypot — bots fill hidden fields, humans don't
+    // Honeypot - bots fill hidden fields, humans don't
     var honeypot = form.querySelector('[name="_honey"]');
     if (honeypot && honeypot.value) {
-      setStatus("Thanks — your message has been sent.", "success");
+      setStatus("Thanks, your message has been sent.", "success");
       return;
     }
 
