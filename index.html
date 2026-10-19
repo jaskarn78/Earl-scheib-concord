@@ -188,6 +188,43 @@
   </div>
 </section>
 
+<!-- Call-back request -->
+<section id="callback" class="py-16" style="background-color:#EEF2F8;">
+  <div class="max-w-xl mx-auto px-4 lg:px-8">
+    <h2 class="text-3xl font-extrabold" style="color:#1A2D4D;">Rather we call you to set a time?</h2>
+    <p class="mt-2 text-zinc-600">Leave your number and we'll call or text you back within one business day to set up your free in-person estimate.</p>
+    <form data-contact-form class="mt-6 grid gap-4 p-6 rounded-xl bg-white" style="border:1px solid #d4dce8;" novalidate>
+      <div>
+        <label class="form-label" for="cb-phone">Phone <span class="text-red-600">*</span></label>
+        <input class="form-field" id="cb-phone" name="phone" type="tel" required autocomplete="tel">
+      </div>
+      <div>
+        <label class="form-label" for="cb-vehicle">Vehicle <span class="text-red-600">*</span></label>
+        <input class="form-field" id="cb-vehicle" name="vehicle" type="text" required placeholder="e.g. 2014 Honda Civic">
+      </div>
+      <div>
+        <label class="form-label" for="cb-need">What do you need?</label>
+        <select class="form-field" id="cb-need" name="need">
+          <option>Full repaint</option>
+          <option>Not sure: full or partial</option>
+          <option>Partial repaint or one panel</option>
+          <option>Body repair, paying myself (no insurance claim)</option>
+          <option>Collision with insurance</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label" for="cb-name">Name <span class="text-zinc-400 font-normal">(optional)</span></label>
+        <input class="form-field" id="cb-name" name="name" type="text" autocomplete="name">
+      </div>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+      <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-4 rounded-md">Call me back</button>
+      <p data-form-status class="mt-2 text-sm" aria-live="polite"></p>
+      <p class="text-xs text-zinc-500">Estimates are free and done in person at the shop. No phone-quote runaround.</p>
+    </form>
+    <p class="mt-4 text-sm text-zinc-600 text-center">Rather talk? <a href="tel:+19256097780" class="font-bold text-red-600">Call (925) 609-7780</a></p>
+  </div>
+</section>
+
 <!-- What we do -->
 <section class="py-20" style="background-color:#F8F7F4;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
@@ -460,6 +497,6 @@
 <a href="tel:+19256097780" class="callbar md:hidden">Call us · (925) 609-7780</a>
 
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/main.js?v=6"></script>
+<script src="js/main.js?v=7"></script>
 </body>
 </html>
