@@ -113,18 +113,28 @@ function eswWireEstimateButtons() {
     } else {
       fab.classList.add("is-visible");
     }
+    var closeTimer = null;
+    // The panel's starting shape is the button's own size, so the morph starts exactly on top of it.
+    var matchButton = function () {
+      panel.style.setProperty("--fw", fab.offsetWidth + "px");
+      panel.style.setProperty("--fh", fab.offsetHeight + "px");
+    };
+    matchButton();
+    window.addEventListener("resize", matchButton);
     var openPanel = function () {
+      clearTimeout(closeTimer);
+      matchButton();
       panel.classList.add("is-open");
       fab.classList.add("is-open");
       fab.setAttribute("aria-expanded", "true");
       eswTrack("schedule_panel_open", { page_path: window.location.pathname });
-      setTimeout(function () { var f = panel.querySelector("input[name=phone]"); if (f) f.focus(); }, 300);
+      setTimeout(function () { var f = panel.querySelector("input[name=phone]"); if (f) f.focus({ preventScroll: true }); }, 420);
     };
     var closePanel = function () {
       panel.classList.remove("is-open");
-      fab.classList.remove("is-open");
       fab.setAttribute("aria-expanded", "false");
-      fab.focus();
+      // Bring the real button back only once the card has shrunk back into the pill.
+      closeTimer = setTimeout(function () { fab.classList.remove("is-open"); fab.focus({ preventScroll: true }); }, 430);
     };
     fab.addEventListener("click", openPanel);
     if (closeBtn) closeBtn.addEventListener("click", closePanel);

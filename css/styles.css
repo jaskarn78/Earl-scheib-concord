@@ -177,7 +177,7 @@ details > div { margin-top: 12px; color: #4b5563; line-height: 1.65; }
 @media (min-width: 1024px) { .setmore-iframe { height: 820px; } }
 
 /* "Schedule your free estimate" floating button (desktop only): the panel grows out of the button */
-.sched-fab, .sched-panel { display: none; }
+.sched-fab, .sched-wrap, .sched-panel { display: none; }
 @media (min-width: 768px) {
   .sched-fab {
     display: inline-flex; align-items: center; gap: 10px;
@@ -191,28 +191,50 @@ details > div { margin-top: 12px; color: #4b5563; line-height: 1.65; }
   .sched-fab.is-visible { transform: none; opacity: 1; pointer-events: auto; }
   .sched-fab:hover { box-shadow: 0 14px 34px rgba(26,45,77,0.38); }
   .sched-fab:focus-visible { outline: 3px solid #1A2D4D; outline-offset: 3px; }
-  .sched-fab.is-open { opacity: 0; transform: scale(.85); pointer-events: none; }
+  /* While the panel morphs, the button hides at once: the panel starts as an exact copy of it. */
+  .sched-fab.is-open { opacity: 0; transition: none; pointer-events: none; }
 
-  .sched-panel {
+  /* The wrapper carries the shadow (a clip-path would cut a box-shadow off); the panel inside
+     is clipped from the button's pill shape to its full card shape. --fw/--fh are the button's
+     size, set by main.js, so the first frame of the panel lines up with the button exactly. */
+  .sched-wrap {
     display: block; position: fixed; right: 28px; bottom: 28px; z-index: 61;
-    width: 360px; max-height: calc(100vh - 110px); overflow: auto;
-    background: #fff; border-radius: 18px; border: 1px solid #d4dce8;
-    box-shadow: 0 24px 60px rgba(26,45,77,0.30);
-    clip-path: circle(26px at calc(100% - 40px) calc(100% - 26px));
+    filter: drop-shadow(0 18px 36px rgba(26,45,77,0.28));
+    pointer-events: none;
+  }
+  .sched-panel {
+    --fw: 260px; --fh: 48px;
+    display: block; position: relative;
+    width: 360px; max-height: calc(100vh - 110px); overflow: hidden;
+    background-color: #fff; border-radius: 18px;
+    clip-path: inset(calc(100% - var(--fh)) 0 0 calc(100% - var(--fw)) round calc(var(--fh) / 2));
     visibility: hidden;
-    transition: clip-path .42s cubic-bezier(.2,.8,.2,1), visibility 0s linear .42s;
+    /* closing: content fades first, then the card shrinks back into the pill */
+    transition: clip-path .36s cubic-bezier(.3,0,.8,.15) .06s, visibility 0s linear .44s;
   }
   .sched-panel.is-open {
-    clip-path: circle(140% at calc(100% - 40px) calc(100% - 26px));
-    visibility: visible;
-    transition: clip-path .42s cubic-bezier(.2,.8,.2,1), visibility 0s;
+    visibility: visible; pointer-events: auto; overflow-y: auto;
+    clip-path: inset(0 0 0 0 round 18px);
+    /* opening: the pill grows into the card, then the content fades in */
+    transition: clip-path .46s cubic-bezier(.2,0,0,1), visibility 0s;
   }
-  .sched-panel .sched-inner { opacity: 0; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease; }
-  .sched-panel.is-open .sched-inner { opacity: 1; transform: none; transition-delay: .14s; }
+  /* a red copy of the button sits in the panel's corner, so the morph starts from the same picture;
+     it fades as the white card grows out around it */
+  .sched-pill {
+    position: absolute; right: 0; bottom: 0; height: var(--fh); width: var(--fw);
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--es-red); border-radius: calc(var(--fh) / 2);
+    color: #fff; font-weight: 700; font-size: 15px; white-space: nowrap; pointer-events: none;
+    opacity: 1; transition: opacity .16s ease .26s;
+  }
+  .sched-panel.is-open .sched-pill { opacity: 0; transition: opacity .18s ease .04s; }
+  .sched-panel .sched-inner { opacity: 0; transition: opacity .1s ease; }
+  .sched-panel.is-open .sched-inner { opacity: 1; transition: opacity .22s ease .2s; }
   .sched-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 9999px; border: 0; background: #F1F5F9; color: #1A2D4D; cursor: pointer; font-size: 18px; line-height: 32px; }
   .sched-close:focus-visible { outline: 3px solid #1A2D4D; outline-offset: 2px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sched-fab, .sched-panel, .sched-panel .sched-inner { transition: opacity .01s !important; }
+  .sched-fab, .sched-panel, .sched-panel .sched-inner, .sched-pill { transition: opacity .01s !important; }
   .sched-panel, .sched-panel.is-open { clip-path: none; }
+  .sched-panel .sched-pill { display: none; }
 }
