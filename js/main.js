@@ -185,6 +185,17 @@ function eswWireEstimateButtons() {
       (kind === "error" ? "text-red-600" : kind === "success" ? "text-green-700" : "text-zinc-600");
   }
 
+  function eswConcordTime() {
+    try {
+      return new Date().toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles", weekday: "short", month: "short", day: "numeric",
+        hour: "numeric", minute: "2-digit"
+      }) + " (Concord time)";
+    } catch (err) {
+      return "";
+    }
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -221,6 +232,8 @@ function eswWireEstimateButtons() {
       message: (form.querySelector("[name=message]") || {}).value || "",
       // Homepage call-back form: what they need instead of a message.
       need: need,
+      // Formspree's own "Submitted" line is in UTC; this one reads in shop time.
+      sent: eswConcordTime(),
       _subject: need ? "Call-back request: " + need + (name ? " (" + name + ")" : "") : "Free estimate request from " + name,
       _template: "table",
       _captcha: "false"
