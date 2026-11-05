@@ -45,6 +45,7 @@
   }
 </script>
 <link rel="stylesheet" href="css/styles.css?v=6">
+<link rel="stylesheet" href="css/booking.css?v=1">
 </head>
 <body class="bg-stone-50 text-zinc-900">
 
@@ -58,13 +59,13 @@
       <a class="nav-link hover:text-red-400" href="car-care.html">Car Care</a><a class="nav-link hover:text-red-400" href="contact.html">Contact</a>
     </nav>
     <div class="hidden md:flex items-center gap-3">
-      <a href="https://marcosris.setmore.com/marco" target="_blank" rel="noopener" class="hidden md:inline-block px-4 py-2 rounded-md font-bold text-sm mr-2" style="background-color:#C8202F; color:#ffffff;">Book a visit</a><a href="tel:+19256097780" class="hidden md:inline-block px-4 py-2 rounded-md border border-white hover:bg-white hover:text-red-700 font-bold text-sm">(925) 609-7780</a>
+      <a href="contact.html#book" class="hidden md:inline-block px-4 py-2 rounded-md font-bold text-sm mr-2" style="background-color:#C8202F; color:#ffffff;">Book a visit</a><a href="tel:+19256097780" class="hidden md:inline-block px-4 py-2 rounded-md border border-white hover:bg-white hover:text-red-700 font-bold text-sm">(925) 609-7780</a>
     </div>
     <button data-menu-toggle aria-expanded="false" aria-label="Toggle menu" class="md:hidden p-2"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   </div>
   <div data-mobile-menu class="mobile-menu md:hidden border-t border-zinc-800">
     <div class="px-4 py-3 flex flex-col gap-1 text-sm">
-      <a class="py-2 font-bold" href="https://marcosris.setmore.com/marco" target="_blank" rel="noopener">Book a visit ↗</a>
+      <a class="py-2 font-bold" href="contact.html#book">Book a visit</a>
       <a class="py-2" href="index.html">Home</a><a class="py-2" href="services.html">Services</a>
       <a class="py-2" href="gallery.html">Gallery</a><a class="py-2" href="about.html">About</a>
       <a class="py-2" href="faq.html">FAQ</a><a class="py-2" href="testimonials.html">Reviews</a>
@@ -81,27 +82,140 @@
   </div>
 </section>
 
-<!-- Setmore inline scheduler -->
-<section class="py-12 md:py-16 bg-white border-b border-zinc-200">
-  <div class="max-w-5xl mx-auto px-4 lg:px-8">
-    <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-      <div>
-        <p class="text-xs font-bold text-red-600 tracking-widest uppercase">Book online</p>
-        <h2 class="text-2xl md:text-3xl font-extrabold mt-1">Pick a time for your free estimate</h2>
+<!-- Native booking: open times come live from the shop's Setmore calendar (js/booking.js) -->
+<section id="book" class="py-12 md:py-16 border-b border-zinc-200" style="background-color:#ffffff; scroll-margin-top:72px;" aria-labelledby="book-title">
+  <div class="max-w-7xl mx-auto px-4 lg:px-8">
+    <p class="font-bold tracking-widest uppercase text-xs" style="color:#C8202F;">Free, no pressure</p>
+    <h2 id="book-title" class="text-2xl md:text-3xl font-extrabold mt-1" style="color:#1A2D4D;">Pick a time for your free estimate</h2>
+    <p class="mt-2 mb-6" style="color:#52525B;">30 minutes at the shop, 2130 Market St, Concord. Pick a time, tell us about the car, done.</p>
+
+    <div class="bk is-step-1" data-booking hidden>
+      <div class="bk-box" data-bk-main>
+        <ol class="bk-prog" aria-hidden="true"><li class="is-on"></li><li></li><li></li></ol>
+        <p class="bk-sr" aria-live="polite" data-bk-announce></p>
+        <div class="bk-grid">
+
+          <div class="bk-col" data-bk-col="day">
+            <h3 class="bk-h3"><span class="bk-n" aria-hidden="true">1</span>Pick a day</h3>
+            <div class="bk-svc"><div><b>Free in-person estimate</b><small>Paint or collision · 30 min</small></div><span class="bk-free">FREE</span></div>
+            <p class="bk-lab bk-mobile-only" id="bk-strip-label">Day</p>
+            <div class="bk-strip" role="group" aria-labelledby="bk-strip-label" data-bk-strip></div>
+            <div class="bk-month" role="group" aria-label="Pick a day">
+              <div class="bk-mh">
+                <button type="button" class="bk-mnav" data-bk-prev aria-label="Previous month">&#8249;</button>
+                <span data-bk-month-label aria-live="polite"></span>
+                <button type="button" class="bk-mnav" data-bk-next aria-label="Next month">&#8250;</button>
+              </div>
+              <div class="bk-cal" data-bk-cal></div>
+              <div class="bk-leg" aria-hidden="true"><span><i></i>Open days</span><span class="is-today">&#9633; Today</span><span>Grey: closed or full</span></div>
+            </div>
+            <p class="bk-call">Rather talk? <a href="tel:+19256097780">Call (925) 609-7780</a></p>
+          </div>
+
+          <div class="bk-col" data-bk-col="time">
+            <h3 class="bk-h3"><span class="bk-n" aria-hidden="true">2</span>Pick a time</h3>
+            <p class="bk-dayh" data-bk-dayh></p>
+            <p class="bk-dsub" data-bk-dsub></p>
+            <div class="bk-status" data-bk-notice></div>
+            <div data-bk-times></div>
+            <p class="bk-tz">Times come live from the shop's Setmore calendar, so a taken time can't be double-booked.</p>
+            <button type="button" class="bk-btn bk-next" data-bk-continue disabled>Continue</button>
+            <p class="bk-fine bk-mobile-only">Rather talk? <a class="bk-link" href="tel:+19256097780">Call (925) 609-7780</a></p>
+          </div>
+
+          <div class="bk-col" data-bk-col="form">
+            <h3 class="bk-h3" tabindex="-1" data-bk-form-title><span class="bk-n is-dim" aria-hidden="true" data-bk-n3>3</span>Your car</h3>
+            <form class="bk-form" data-bk-form novalidate>
+              <div class="bk-pick"><b data-bk-pick>Pick a time first</b><button type="button" data-bk-change>Change</button></div>
+              <fieldset data-bk-fieldset disabled>
+                <legend class="bk-sr">Your details</legend>
+                <div class="bk-fields">
+                  <div class="bk-row2">
+                    <div class="bk-f">
+                      <label for="bk-name">Name</label>
+                      <input class="bk-in" id="bk-name" name="name" type="text" autocomplete="name" placeholder="First and last name" maxlength="80" required aria-describedby="bk-name-err">
+                      <p class="bk-err" id="bk-name-err" hidden></p>
+                    </div>
+                    <div class="bk-f">
+                      <label for="bk-phone">Mobile</label>
+                      <input class="bk-in" id="bk-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(925) 555-0123" maxlength="20" required aria-describedby="bk-phone-err">
+                      <p class="bk-err" id="bk-phone-err" hidden></p>
+                    </div>
+                  </div>
+                  <div class="bk-f">
+                    <label for="bk-email">Email <span class="bk-opt">(for your confirmation)</span></label>
+                    <input class="bk-in" id="bk-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120" required aria-describedby="bk-email-err">
+                    <p class="bk-err" id="bk-email-err" hidden></p>
+                  </div>
+                  <fieldset class="bk-f">
+                    <legend class="bk-legend">Vehicle</legend>
+                    <div class="bk-row3">
+                      <div><label class="bk-sr" for="bk-year">Year</label><input class="bk-in" id="bk-year" name="year" type="text" inputmode="numeric" maxlength="4" placeholder="Year" aria-describedby="bk-year-err"></div>
+                      <div><label class="bk-sr" for="bk-make">Make</label><input class="bk-in" id="bk-make" name="make" type="text" maxlength="30" placeholder="Make"></div>
+                      <div><label class="bk-sr" for="bk-model">Model</label><input class="bk-in" id="bk-model" name="model" type="text" maxlength="40" placeholder="Model"></div>
+                    </div>
+                    <p class="bk-err" id="bk-year-err" hidden></p>
+                  </fieldset>
+                  <fieldset class="bk-f">
+                    <legend class="bk-legend">What do you need?</legend>
+                    <div class="bk-chips" data-bk-need role="radiogroup" aria-label="What do you need?" aria-describedby="bk-need-err">
+                      <label class="bk-chip"><input type="radio" name="need" value="Full paint"><span>Full paint</span></label>
+                      <label class="bk-chip"><input type="radio" name="need" value="Collision / dents"><span>Collision / dents</span></label>
+                      <label class="bk-chip"><input type="radio" name="need" value="Bumper"><span>Bumper</span></label>
+                      <label class="bk-chip"><input type="radio" name="need" value="Scratches"><span>Scratches</span></label>
+                      <label class="bk-chip"><input type="radio" name="need" value="Insurance claim"><span>Insurance claim</span></label>
+                      <label class="bk-chip"><input type="radio" name="need" value="Not sure"><span>Not sure</span></label>
+                    </div>
+                    <p class="bk-err" id="bk-need-err" hidden></p>
+                  </fieldset>
+                  <div class="bk-f">
+                    <label for="bk-notes">Anything else <span class="bk-opt">(optional)</span></label>
+                    <textarea class="bk-in" id="bk-notes" name="notes" rows="2" maxlength="500" placeholder="Color, where the damage is..." aria-describedby="bk-notes-err"></textarea>
+                    <p class="bk-err" id="bk-notes-err" hidden></p>
+                  </div>
+                  <!-- honeypot: bots fill this; humans never see it -->
+                  <div class="bk-hp" aria-hidden="true"><label for="bk-website">Website</label><input id="bk-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+                  <button type="submit" class="bk-btn" data-bk-submit>Book your time</button>
+                  <div class="bk-status" aria-live="polite" data-bk-status></div>
+                  <p class="bk-fine">We'll email you a confirmation. Need to change it later? Call (925) 609-7780.</p>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+
+        </div>
       </div>
-      <a href="https://marcosris.setmore.com/marco" target="_blank" rel="noopener" class="text-sm font-semibold text-red-600 hover:underline">Open scheduler in new tab →</a>
+
+      <div class="bk-box bk-done" data-bk-done hidden>
+        <div class="bk-ok" aria-hidden="true">&#10003;</div>
+        <h3 tabindex="-1" data-bk-done-title>You're booked</h3>
+        <p class="bk-lead" data-bk-done-lead>We emailed you a confirmation.</p>
+        <dl class="bk-card">
+          <div><dt>When</dt><dd data-bk-sum="when"></dd></div>
+          <div><dt>What</dt><dd data-bk-sum="what"></dd></div>
+          <div><dt>Vehicle</dt><dd data-bk-sum="vehicle"></dd></div>
+          <div><dt>Where</dt><dd data-bk-sum="where"></dd></div>
+        </dl>
+        <div class="bk-acts">
+          <button type="button" class="bk-out" data-bk-ics>Add to my calendar</button>
+          <a class="bk-out" href="https://maps.google.com/?q=2130+Market+St+Concord+CA+94520">Get directions</a>
+        </div>
+        <p class="bk-fine" style="text-align:left;">Need to change it? Call <a class="bk-link" href="tel:+19256097780">(925) 609-7780</a>.</p>
+      </div>
+
+      <div class="bk-box bk-fail" data-bk-fail hidden>
+        <h3 class="bk-h3" tabindex="-1" data-bk-fail-title><span class="bk-n is-dim" aria-hidden="true">!</span>Online booking is taking a break</h3>
+        <div class="bk-warn" data-bk-fail-msg>We couldn't load open times just now.</div>
+        <div class="bk-acts">
+          <a class="bk-out is-primary" href="https://marcosris.setmore.com/marco">Book on our Setmore page</a>
+          <a class="bk-out" href="tel:+19256097780">Call (925) 609-7780</a>
+        </div>
+        <p class="bk-fine" style="text-align:left;"><button type="button" class="bk-link" style="background:none;border:0;padding:0;font:inherit;cursor:pointer;" data-bk-retry>Try again</button></p>
+      </div>
     </div>
-    <div class="rounded-xl overflow-hidden border border-zinc-200 shadow-sm bg-white">
-      <iframe
-        title="Schedule a visit at Earl Scheib Of Concord"
-        src="https://marcosris.setmore.com/marco"
-        loading="lazy"
-        width="100%"
-        class="setmore-iframe"
-        style="border:0;display:block;width:100%;"
-        allow="payment; clipboard-write"></iframe>
-    </div>
-    <p class="mt-4 text-xs text-zinc-500">Powered by Setmore. If the scheduler doesn't load, <a class="text-red-600 font-semibold hover:underline" href="https://marcosris.setmore.com/marco" target="_blank" rel="noopener">open it in a new tab</a> or call us at <a class="text-red-600 font-semibold hover:underline" href="tel:+19256097780">(925) 609-7780</a>.</p>
+
+    <noscript><p class="mt-2 text-sm" style="color:#52525B;">Online booking needs JavaScript. You can still book on our Setmore page or call us.</p></noscript>
+    <p class="mt-4 text-xs text-zinc-500">Prefer the Setmore page? <a class="text-red-600 font-semibold hover:underline" href="https://marcosris.setmore.com/marco">Book on our Setmore page</a> or call us at <a class="text-red-600 font-semibold hover:underline" href="tel:+19256097780">(925) 609-7780</a>.</p>
   </div>
 </section>
 
@@ -171,7 +285,7 @@
           <li class="flex justify-between py-2"><span>Saturday</span><span class="text-right"><em>By appointment only</em><br><span class="text-xs text-zinc-500">Book a slot online</span></span></li>
           <li class="flex justify-between py-2 text-zinc-400"><span>Sunday</span><span>Closed</span></li>
         </ul>
-        <a href="https://marcosris.setmore.com/marco" target="_blank" rel="noopener"
+        <a href="contact.html#book"
            class="mt-4 inline-flex w-full items-center justify-center font-bold px-5 py-3 rounded-md text-sm"
            style="background-color:#C8202F; color:#ffffff;">Book a visit</a>
       </div>
@@ -195,7 +309,7 @@
 <footer class="text-zinc-300 py-14" style="background-color:#1A2D4D; border-top:1px solid #243d66;">
   <div class="max-w-7xl mx-auto px-4 lg:px-8 grid md:grid-cols-4 gap-10">
     <div class="md:col-span-2"><p class="font-extrabold text-white text-lg">EARL SCHEIB <span class="text-red-500">/</span> CONCORD</p><p class="mt-3 text-sm text-zinc-400 max-w-sm">Quality auto paint and collision repair in Concord, CA. Family-owned since 2010.</p><a href="https://www.instagram.com/earlscheibofconcord" class="inline-block mt-4 text-sm text-red-400 hover:underline">@earlscheibofconcord →</a></div>
-    <div><p class="font-bold text-white">Visit</p><address class="mt-3 not-italic text-sm leading-relaxed">2130 Market St<br>Concord, CA 94520<br><a href="https://maps.google.com/?q=2130+Market+St+Concord+CA+94520" class="text-red-400 hover:underline">Get directions →</a></address><p class="font-bold text-white mt-5">Hours</p><p class="text-sm mt-2">Monday to Thursday 8:00am–4:00pm<br>Friday 8:00am–3:00pm<br>Saturday <em>by appointment only</em><br><a href="https://marcosris.setmore.com/marco" target="_blank" rel="noopener" class="text-xs text-red-400 hover:underline inline-block py-3">Book online anytime &rarr;</a></p></div>
+    <div><p class="font-bold text-white">Visit</p><address class="mt-3 not-italic text-sm leading-relaxed">2130 Market St<br>Concord, CA 94520<br><a href="https://maps.google.com/?q=2130+Market+St+Concord+CA+94520" class="text-red-400 hover:underline">Get directions →</a></address><p class="font-bold text-white mt-5">Hours</p><p class="text-sm mt-2">Monday to Thursday 8:00am–4:00pm<br>Friday 8:00am–3:00pm<br>Saturday <em>by appointment only</em><br><a href="contact.html#book" class="text-xs text-red-400 hover:underline inline-block py-3">Book online anytime &rarr;</a></p></div>
     <div><p class="font-bold text-white">Contact</p><p class="text-sm mt-3"><a href="tel:+19256097780" class="hover:text-red-400">(925) 609-7780</a></p><p class="text-sm mt-1"><a href="mailto:info@earlscheibconcord.com" class="hover:text-red-400">info@earlscheibconcord.com</a></p><p class="font-bold text-white mt-5">Site</p><ul class="text-sm mt-2 space-y-1"><li><a href="services.html" class="hover:text-red-400">Services</a></li><li><a href="gallery.html" class="hover:text-red-400">Gallery</a></li><li><a href="faq.html" class="hover:text-red-400">FAQ</a></li><li><a href="contact.html" class="hover:text-red-400">Contact</a></li><li><a href="privacy.html" class="hover:text-red-400">Privacy</a></li><li><a href="terms.html" class="hover:text-red-400">SMS Terms</a></li></ul></div>
   </div>
   <div class="max-w-7xl mx-auto px-4 lg:px-8 mt-10 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row justify-between text-xs text-zinc-500"><p>© <span class="js-year">2026</span> Earl Scheib Of Concord. All rights reserved.</p><p>Family-owned auto body &amp; paint shop · Concord, CA</p></div>
@@ -203,6 +317,7 @@
 
 <a href="tel:+19256097780" class="callbar md:hidden">Call us · (925) 609-7780</a>
 <script>document.querySelectorAll('.js-year').forEach(e=>e.textContent=new Date().getFullYear());</script>
-<script src="js/main.js?v=13"></script>
+<script src="js/main.js?v=14"></script>
+<script src="js/booking.js?v=1"></script>
 </body>
 </html>

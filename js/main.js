@@ -52,23 +52,28 @@ function eswWirePhoneLinks() {
   });
 }
 // The other ways to set up an estimate, one GA4 event each, so they can be compared:
-// book_online_click (Setmore), directions_click (Google Maps, for walk-ins).
-// Form requests are counted on a successful send (request_time_submit / contact_form_submit).
+// book_online_click (the booking on contact.html#book, or the Setmore page),
+// directions_click (Google Maps, for walk-ins).
+// Form requests are counted on a successful send (request_time_submit / contact_form_submit);
+// a finished online booking is book_online_submit (js/booking.js).
 function eswWireOptionLinks() {
-  document.querySelectorAll('a[href*="setmore.com"], a[href*="maps.google."], a[href*="google.com/maps"]').forEach(function (a) {
+  document.querySelectorAll('a[href*="setmore.com"], a[href$="#book"], a[href*="maps.google."], a[href*="google.com/maps"]').forEach(function (a) {
     if (a.dataset.eswOption) return;
     a.dataset.eswOption = "1";
     var href = a.getAttribute("href") || "";
-    var name = /setmore\.com/.test(href) ? "book_online_click" : "directions_click";
+    var book = /setmore\.com/.test(href) || /#book$/.test(href);
+    var name = book ? "book_online_click" : "directions_click";
     a.addEventListener("click", function () {
-      eswTrack(name, { placement: eswPlacement(a), page_path: window.location.pathname });
+      var p = { placement: eswPlacement(a), page_path: window.location.pathname };
+      if (book) p.destination = /setmore\.com/.test(href) ? "setmore" : "website";
+      eswTrack(name, p);
     });
   });
 }
 // "Book a free in-person estimate" buttons: engagement signal on the way to the form.
 function eswWireEstimateButtons() {
   document.querySelectorAll('a[href$="contact.html"], a[href*="contact.html#"]').forEach(function (a) {
-    if (a.dataset.eswWired) return;
+    if (a.dataset.eswWired || a.dataset.eswOption) return; // #book links count as book_online_click
     if (!/estimate|book/i.test(a.textContent || "")) return; // CTA buttons only, not the nav link
     a.dataset.eswWired = "1";
     a.addEventListener("click", function () {
