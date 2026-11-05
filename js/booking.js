@@ -412,7 +412,9 @@
       if (typeof window.eswSetUserData === "function") window.eswSetUserData(p.name, p.email, p.phone);
       track("generate_lead", { form_id: "booking", lead_type: "online_booking", page_path: location.pathname });
       track("book_online_submit", { placement: "booking", need: p.need, page_path: location.pathname });
-      if (typeof window.eswAdsConversion === "function" && typeof window.eswTags === "function") {
+      // Google Ads lead conversion stays off until Jas decides (conversion tracking is his call).
+      var ADS_CONVERSION_ON_BOOKING = false;
+      if (ADS_CONVERSION_ON_BOOKING && typeof window.eswAdsConversion === "function" && typeof window.eswTags === "function") {
         window.eswAdsConversion(window.eswTags().ADS_LEAD_LABEL);
       }
     }
