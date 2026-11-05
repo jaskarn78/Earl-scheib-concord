@@ -296,7 +296,7 @@
     if (el) { if (msg) el.setAttribute("aria-invalid", "true"); else el.removeAttribute("aria-invalid"); }
     if (err) { err.textContent = msg || ""; err.hidden = !msg; }
   }
-  function clearErrs() { ["name", "phone", "email", "year", "need", "notes"].forEach(function (n) { setErr(n, ""); }); }
+  function clearErrs() { ["name", "phone", "email", "year", "need", "heard", "notes"].forEach(function (n) { setErr(n, ""); }); }
   function setStatus(html) { statusEl.innerHTML = html || ""; }
 
   function needValue() { var r = form.querySelector('input[name="need"]:checked'); return r ? r.value : ""; }
@@ -306,7 +306,7 @@
       date: state.date, time: state.time,
       name: f.name.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(),
       year: f.year.value.trim(), make: f.make.value.trim(), model: f.model.value.trim(),
-      need: needValue(), notes: f.notes.value.trim(), website: f.website.value
+      need: needValue(), heard: f.heard.value, notes: f.notes.value.trim(), website: f.website.value
     };
   }
   function validate(p) {
@@ -411,7 +411,7 @@
       // Lead conversion, same pattern as the website forms (js/main.js).
       if (typeof window.eswSetUserData === "function") window.eswSetUserData(p.name, p.email, p.phone);
       track("generate_lead", { form_id: "booking", lead_type: "online_booking", page_path: location.pathname });
-      track("book_online_submit", { placement: "booking", need: p.need, page_path: location.pathname });
+      track("book_online_submit", { placement: "booking", need: p.need, heard: p.heard, page_path: location.pathname });
       // Google Ads lead conversion stays off until Jas decides (conversion tracking is his call).
       var ADS_CONVERSION_ON_BOOKING = false;
       if (ADS_CONVERSION_ON_BOOKING && typeof window.eswAdsConversion === "function" && typeof window.eswTags === "function") {

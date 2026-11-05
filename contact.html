@@ -169,6 +169,22 @@
                     <p class="bk-err" id="bk-need-err" hidden></p>
                   </fieldset>
                   <div class="bk-f">
+                    <label for="bk-heard">How did you hear about us? <span class="bk-opt">(optional)</span></label>
+                    <select class="bk-in" id="bk-heard" name="heard" aria-describedby="bk-heard-err">
+                      <option value="">Pick one</option>
+                      <option>Google search</option>
+                      <option>Google Maps</option>
+                      <option>Saw an ad</option>
+                      <option>Yelp</option>
+                      <option>Facebook or Instagram</option>
+                      <option>Friend or family</option>
+                      <option>Drove by the shop</option>
+                      <option>Been here before</option>
+                      <option>Other</option>
+                    </select>
+                    <p class="bk-err" id="bk-heard-err" hidden></p>
+                  </div>
+                  <div class="bk-f">
                     <label for="bk-notes">Anything else <span class="bk-opt">(optional)</span></label>
                     <textarea class="bk-in" id="bk-notes" name="notes" rows="2" maxlength="500" placeholder="Color, where the damage is..." aria-describedby="bk-notes-err"></textarea>
                     <p class="bk-err" id="bk-notes-err" hidden></p>
@@ -318,6 +334,6 @@
 <a href="tel:+19256097780" class="callbar md:hidden">Call us · (925) 609-7780</a>
 <script>document.querySelectorAll('.js-year').forEach(e=>e.textContent=new Date().getFullYear());</script>
 <script src="js/main.js?v=14"></script>
-<script src="js/booking.js?v=2"></script>
+<script src="js/booking.js?v=3"></script>
 </body>
 </html>
