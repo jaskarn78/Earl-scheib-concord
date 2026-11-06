@@ -10,16 +10,21 @@ permissions:
   pages: write
   id-token: write
 
+# Do NOT cancel an in-flight deploy (GitHub's own Pages starter uses false). Cancelling a run
+# mid-deploy left a dangling Pages deployment that kept later deploys stuck in
+# "deployment_queued" until they failed (11/05 ~50 min, 11/06 three failures). Queued runs
+# in between are still skipped, so the newest push always wins.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Configure Pages
@@ -32,4 +37,14 @@ jobs:
           path: .
       - name: Deploy
         id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      # GitHub's Pages queue sometimes stalls and the action gives up with
+      # "Deployment failed, try again later". One automatic retry after a pause.
+      - name: Wait before retry
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+      - name: Deploy (retry)
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
