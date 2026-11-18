@@ -83,8 +83,26 @@ function eswWireEstimateButtons() {
   });
 }
 
+// Google rating and review count, live from the shop app (R-0086, Jas 2026-11-18: never typed by hand).
+// The HTML holds the last known numbers, so a failed call leaves them as they are.
+function eswLiveReviews() {
+  var counts = document.querySelectorAll("[data-g-count]");
+  var ratings = document.querySelectorAll("[data-g-rating]");
+  if (!counts.length && !ratings.length) return;
+  if (typeof window.fetch !== "function") return;
+  fetch("https://notify.earlscheibconcord.com/earlscheibconcord/pub/booking/reviews-summary")
+    .then(function (res) { return res.ok ? res.json() : null; })
+    .then(function (d) {
+      if (!d || !d.ok || !(d.count > 0) || !(d.rating >= 1 && d.rating <= 5)) return;
+      counts.forEach(function (el) { el.textContent = String(d.count); });
+      ratings.forEach(function (el) { el.textContent = Number(d.rating).toFixed(1); });
+    })
+    .catch(function () {});
+}
+
 (function () {
   eswWirePhoneLinks();
+  eswLiveReviews();
   eswWireOptionLinks();
   eswWireEstimateButtons();
 
