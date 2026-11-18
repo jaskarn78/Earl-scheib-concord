@@ -208,3 +208,17 @@ textarea.bk-in { min-height: 64px; resize: vertical; }
 @media (prefers-reduced-motion: no-preference) {
   .bk-d, .bk-tm, .bk-sd, .bk-chip span, .bk-btn, .bk-out { transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
 }
+
+/* Recent Google reviews above the booking calendar (Marco 2026-11-18). Kept small so the calendar stays in view. */
+.rv { margin: 0 0 18px; }
+.rv-top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 14px; color: #3f3f46; margin: 0 0 8px; }
+.rv-s { color: #f59e0b; letter-spacing: 1px; font-size: 16px; }
+.rv-row { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+.rv-card { flex: 0 0 80%; scroll-snap-align: start; margin: 0; border: 1px solid #e4e4e7; border-radius: 12px; padding: 10px 14px; background: #fafafa; }
+.rv-stars { color: #f59e0b; letter-spacing: 1px; font-size: 13px; }
+.rv-q { margin: 4px 0 6px; font-size: 14px; line-height: 1.4; color: #27272a; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.rv-who { font-size: 12px; color: #71717a; }
+@media (min-width: 768px) {
+  .rv-row { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; }
+  .rv-card { flex: none; }
+}
