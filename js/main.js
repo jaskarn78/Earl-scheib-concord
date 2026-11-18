@@ -34,6 +34,7 @@ function eswSetUserData(name, email, phone) {
 // Where on the page a link sits, so reports can tell the header button from the hero button.
 function eswPlacement(el) {
   if (el.classList.contains("callbar")) return "call_bar";
+  if (el.classList.contains("sched-fab")) return "floating_button";
   if (el.closest("#sched-panel")) return "schedule_panel";
   if (el.closest("header")) return "header";
   if (el.closest("footer")) return "footer";
@@ -128,11 +129,11 @@ function eswWireEstimateButtons() {
   // `Accept: application/json`.
   var FORM_ENDPOINT = "https://formspree.io/f/xbdwqvrl";
 
-  // Desktop "Schedule your free estimate" button: grows into the form panel.
+  // Desktop "Schedule your free estimate" button: a link to the booking calendar (contact.html#book).
+  // Marco 2026-11-18: it used to open a call-back form; now it books directly.
+  // Clicks count as book_online_click with placement "floating_button" (eswWireOptionLinks).
   var fab = document.querySelector("[data-sched-open]");
-  var panel = document.getElementById("sched-panel");
-  if (fab && panel) {
-    var closeBtn = panel.querySelector("[data-sched-close]");
+  if (fab) {
     // Show the button only once the hero (with its own Book/Call buttons) has scrolled away.
     var hero = document.querySelector("[data-hero]");
     if ("IntersectionObserver" in window && hero) {
@@ -142,37 +143,6 @@ function eswWireEstimateButtons() {
     } else {
       fab.classList.add("is-visible");
     }
-    var closeTimer = null;
-    // The panel's starting shape is the button's own size, so the morph starts exactly on top of it.
-    var matchButton = function () {
-      panel.style.setProperty("--fw", fab.offsetWidth + "px");
-      panel.style.setProperty("--fh", fab.offsetHeight + "px");
-    };
-    matchButton();
-    window.addEventListener("resize", matchButton);
-    var openPanel = function () {
-      clearTimeout(closeTimer);
-      matchButton();
-      panel.classList.add("is-open");
-      fab.classList.add("is-open");
-      fab.setAttribute("aria-expanded", "true");
-      eswTrack("schedule_panel_open", { page_path: window.location.pathname });
-      setTimeout(function () { var f = panel.querySelector("input[name=phone]"); if (f) f.focus({ preventScroll: true }); }, 420);
-    };
-    var closePanel = function () {
-      panel.classList.remove("is-open");
-      fab.setAttribute("aria-expanded", "false");
-      // Bring the real button back only once the card has shrunk back into the pill.
-      closeTimer = setTimeout(function () { fab.classList.remove("is-open"); fab.focus({ preventScroll: true }); }, 430);
-    };
-    fab.addEventListener("click", openPanel);
-    if (closeBtn) closeBtn.addEventListener("click", closePanel);
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && panel.classList.contains("is-open")) closePanel();
-    });
-    document.addEventListener("click", function (e) {
-      if (panel.classList.contains("is-open") && !panel.contains(e.target) && !fab.contains(e.target)) closePanel();
-    });
   }
 
   // Every form on the page (the homepage has one inline on phones and one in the panel on desktop).
