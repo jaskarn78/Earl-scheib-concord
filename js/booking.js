@@ -331,12 +331,18 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (state.booking) return;
-    if (!state.date || !state.time) { setStatus("Please pick a day and a time first."); return; }
+    if (!state.date || !state.time) {
+      track("booking_invalid", { stage: "client", fields: "slot", page_path: location.pathname });
+      setStatus("Please pick a day and a time first.");
+      return;
+    }
     clearErrs();
     setStatus("");
     var p = collect();
     var errs = validate(p);
     if (errs.length) {
+      // Which checks stopped the booking: field names only, never what was typed (Jas 2026-11-19).
+      track("booking_invalid", { stage: "client", fields: errs.map(function (x) { return x[0]; }).join(","), page_path: location.pathname });
       errs.forEach(function (x) { setErr(x[0], x[1]); });
       setStatus(errs.length === 1 ? errs[0][1] : "Please check the highlighted fields.");
       focusField(errs[0][0]);
@@ -352,6 +358,7 @@
       if (r.status === 200 && d.ok) return showDone(p, d);
       if (r.status === 409 && d.error === "slot_taken") return slotTaken(d);
       if (r.status === 400 && d.field) {
+        track("booking_invalid", { stage: "server", fields: String(d.field), page_path: location.pathname });
         if (d.field === "date" || d.field === "time") {
           setStatus(d.message || "Please pick another time.");
           setStep(1);
